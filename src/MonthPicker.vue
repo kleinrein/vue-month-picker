@@ -1,6 +1,6 @@
 <template>
   <div class="month-picker-container">
-    <div class="month-picker-year">
+    <div class="month-picker-year" v-if="showYear">
       <button @click="prevYear()">&lsaquo;</button>
       <p>{{ year }}</p>
       <button @click="nextYear()">&rsaquo;</button>
@@ -37,6 +37,11 @@ export default {
       validator: function(value) {
         return value.length !== 12
       },
+      required: false
+    },
+    showYear: {
+      type: Boolean,
+      default: true,
       required: false
     },
     defaultMonth: {
@@ -82,6 +87,7 @@ export default {
         from: date,
         to: new Date(year, month, 1),
         month: this.monthsByLang[month - 1],
+        monthIndex: month,
         year: year
       }
     }

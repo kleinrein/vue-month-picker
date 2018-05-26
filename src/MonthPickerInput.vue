@@ -15,7 +15,8 @@
       :default-month="defaultMonth"
       :lang="lang"
       :months="months"
-      :no-default="noDefault">
+      :no-default="noDefault"
+      :show-year="showYear">
     </month-picker>
   </div>
 </template>
@@ -56,6 +57,11 @@ export default {
       },
       required: false
     },
+    showYear: {
+      type: Boolean,
+      default: true,
+      required: false
+    },
     defaultMonth: {
       type: Number,
       default: null,
@@ -68,7 +74,7 @@ export default {
     },
     noDefault: {
       type: Boolean,
-      default: true,
+      default: false,
       required: false
     }
   },
@@ -85,15 +91,13 @@ export default {
     populateInput (date) {
 			this.selectedDate = `${date.month}, ${date.year}`
 			this.monthPickerVisible = false
+      this.$emit("input", date)
 		},
 		showMonthPicker () {
 			this.monthPickerVisible = !this.monthPickerVisible
     },
     hide () {
       this.monthPickerVisible = false
-    },
-    clear () {
-
     }
   }
 }

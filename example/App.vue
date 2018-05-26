@@ -45,13 +45,6 @@ export default {
 	methods: {
 		showDate (date) {
 			this.date = date
-		},
-		populateInput (date) {
-			this.selectedDate = `${date.month}, ${date.year}`
-			this.monthPickerVisible = false
-		},
-		showMonthPicker () {
-			this.monthPickerVisible = !this.monthPickerVisible
 		}
 	}
 }

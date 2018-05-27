@@ -1,6 +1,5 @@
-[![npm](https://img.shields.io/npm/v/npm.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
-
-[![npm](https://img.shields.io/npm/dm/localeval.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
+[![NPM version](https://img.shields.io/npm/v/vue-month-picker.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
+[![NPM downloads](https://img.shields.io/npm/dm/vue-month-picker.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
 
 
 # vue-month-picker

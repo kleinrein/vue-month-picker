@@ -1,6 +1,13 @@
+[![npm](https://img.shields.io/npm/v/npm.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
+
+[![npm](https://img.shields.io/npm/dm/localeval.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
+
+
 # vue-month-picker
 
 A lightweight month picker for Vue.js.
+
+<img src="https://i.imgur.com/JZHRo3g.png" width="300">
 
 ## Install
 npm

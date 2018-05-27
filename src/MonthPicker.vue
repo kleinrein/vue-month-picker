@@ -81,8 +81,10 @@ export default {
     },
     date: function() {
       const month = this.monthsByLang.indexOf(this.currentMonth) + 1
-      const date = new Date(`${this.year}-${month}-01`)
+      const date = new Date(`${this.year}/${month}/01`)
       const year = date.getFullYear()
+
+      console.log(date)
       return {
         from: date,
         to: new Date(year, month, 1),
@@ -185,7 +187,7 @@ export default {
   padding: 0.75em 0.25em;
   cursor: pointer;
   text-align: center;
-  border: 1px solid rgba(245, 245, 245);
+  border: 1px solid rgba(245, 245, 245, .75);
   transition: all 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 

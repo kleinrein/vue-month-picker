@@ -5,11 +5,11 @@ A lightweight month picker for Vue.js.
 ## Install
 npm
 ```bash
-npm install -S vue-month-picker
+npm install --save vue-month-picker
 ```
 yarn
 ```bash
-yarn add -S vue-month-picker
+yarn add --save vue-month-picker
 ```
 
 ## Usage

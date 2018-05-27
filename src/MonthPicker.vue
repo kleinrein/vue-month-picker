@@ -27,14 +27,14 @@ export default {
     lang: {
       type: String,
       default: 'en',
-      validator: function(value) {
+      validator: function (value) {
         return ['en'].indexOf(value) !== -1
       },
       required: false
     },
     months: {
       default: null,
-      validator: function(value) {
+      validator: function (value) {
         return value.length !== 12
       },
       required: false

@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="month-picker-input-container"
     v-click-outside="hide">
     <input
@@ -8,7 +8,7 @@
       v-model="selectedDate"
       @click="showMonthPicker()"
       readonly>
-    <month-picker 
+    <month-picker
       v-show="monthPickerVisible"
       @input="populateInput"
       :default-year="defaultYear"
@@ -23,21 +23,7 @@
 
 <script>
 import Vue from 'vue'
-import MonthPicker from '@/MonthPicker'
-
-Vue.directive('click-outside', {
-  bind: function (el, binding, vnode) {
-    el.event = function (event) {
-      if (!(el === event.target || el.contains(event.target))) {
-        vnode.context[binding.expression](event)
-      }
-    }
-    document.body.addEventListener('click', el.event)
-  },
-  unbind: function (el) {
-    document.body.removeEventListener('click', el.event)
-  }
-})
+import MonthPicker from './MonthPicker'
 
 export default {
   name: 'en',
@@ -45,14 +31,14 @@ export default {
     lang: {
       type: String,
       default: 'en',
-      validator: function(value) {
+      validator: function (value) {
         return ['en'].indexOf(value) !== -1
       },
       required: false
     },
     months: {
       default: null,
-      validator: function(value) {
+      validator: function (value) {
         return value.length !== 12
       },
       required: false
@@ -76,6 +62,21 @@ export default {
       type: Boolean,
       default: false,
       required: false
+    }
+  },
+  directives: {
+    clickOutside: {
+      bind: function (el, binding, vnode) {
+        el.event = function (event) {
+          if (!(el === event.target || el.contains(event.target))) {
+            vnode.context[binding.expression](event)
+          }
+        }
+        document.body.addEventListener('click', el.event)
+      },
+      unbind: function (el) {
+        document.body.removeEventListener('click', el.event)
+      }
     }
   },
   data() {
@@ -105,6 +106,8 @@ export default {
 <style scoped>
   .month-picker-input-container {
     position: relative;
+    width: 180px;
+    min-width: 140px;
   }
 
   .month-picker-input {

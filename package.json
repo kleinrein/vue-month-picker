@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "A simple and elegant month picker for Vue",
   "main": "src/index.js",
+  "homepage": "https://github.com/kleinrein/vue-month-picker",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

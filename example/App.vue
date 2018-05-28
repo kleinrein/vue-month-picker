@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<a href="#" class="github-corner">
+		<a href="https://github.com/kleinrein/vue-month-picker" class="github-corner">
 			<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 250 250" fill="#151513" style="position: absolute; top: 0; left: 0">
 				<path fill="#000" d="M250 0L135 115h-15l-12 27L0 250V0z"/>
 				<path fill="#fff" class="octo-arm" d="M122 109c15-9 9-19 9-19-3-7-2-11-2-11 1-7-3-2-3-2-4 5-2 11-2 11 3 10-5 15-9 16" style="-webkit-transform-origin: 120px 144px; transform-origin: 120px 144px"/>

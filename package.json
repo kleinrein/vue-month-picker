@@ -14,11 +14,11 @@
   "keywords": [
     "vue",
     "month",
-    "year"    
+    "year"
   ],
   "author": "Andreas Rein",
   "license": "MIT",
   "devDependencies": {
-    "poi": "^10.1.9"
+    "poi": "^10.2.10"
   }
 }

@@ -174,6 +174,10 @@ export default {
   border: 1px solid #e8e8e8;
 }
 
+.month-picker-year button:hover {
+  background-color: rgba(0, 0, 0, .025);
+}
+
 .month-picker-year button:first-child {
   left: 10px;
 }
@@ -188,7 +192,7 @@ export default {
   cursor: pointer;
   text-align: center;
   border: 1px solid rgba(245, 245, 245, .75);
-  transition: all 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .month-picker-month.selected {

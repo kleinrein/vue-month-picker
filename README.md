@@ -119,6 +119,7 @@ Change and input events returns a date object with the following properties:
 ## Translations
 
 Available languages
+
 | Abbr	| Language			|
 |-------|---------------|
 | af		| Afrikaans 		|

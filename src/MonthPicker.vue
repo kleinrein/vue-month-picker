@@ -1,17 +1,22 @@
 <template>
   <div class="month-picker-container">
     <div class="month-picker-year" v-if="showYear">
-      <button @click="prevYear()">&lsaquo;</button>
+      <button @click="changeYear(-1)">
+        &lsaquo;
+      </button>
       <p>{{ year }}</p>
-      <button @click="nextYear()">&rsaquo;</button>
+      <button @click="changeYear(+1)">
+        &rsaquo;
+      </button>
     </div>
     <div class="month-picker">
       <div
         v-for="(month, i) in monthsByLang"
         :key="month" 
-        v-bind:class="currentMonth === month ? 'selected' : ''"
+        :class="currentMonth === month ? 'selected' : ''"
         class="month-picker-month"
-        @click="selectMonth(i, true)">
+        @click="selectMonth(i, true)"
+      >
         {{ month }}
       </div>
     </div>
@@ -20,46 +25,11 @@
 
 <script>
 import languages from './languages'
+import monthPicker from './month-picker'
 
 export default {
   name: 'en',
-  props: {
-    lang: {
-      type: String,
-      default: 'en',
-      validator: function (value) {
-        return ['en'].indexOf(value) !== -1
-      },
-      required: false
-    },
-    months: {
-      default: null,
-      validator: function (value) {
-        return value.length !== 12
-      },
-      required: false
-    },
-    showYear: {
-      type: Boolean,
-      default: true,
-      required: false
-    },
-    defaultMonth: {
-      type: Number,
-      default: null,
-      required: false
-    },
-    defaultYear: {
-      type: Number,
-      default: null,
-      required: false
-    },
-    noDefault: {
-      type: Boolean,
-      default: false,
-      required: false
-    }
-  },
+  mixins: [monthPicker],
   data() {
     return {
       currentMonthIndex: null,
@@ -84,7 +54,6 @@ export default {
       const date = new Date(`${this.year}/${month}/01`)
       const year = date.getFullYear()
 
-      console.log(date)
       return {
         from: date,
         to: new Date(year, month, 1),
@@ -107,22 +76,30 @@ export default {
   },
   methods: {
     onChange() {
-      this.$emit("change", this.date)
+      this.$emit('change', this.date)
     },
     selectMonth(index, input = false) {
+      const isAlreadySelected = this.currentMonthIndex === index
+      if (this.clearable && isAlreadySelected) {
+        this.currentMonthIndex = null
+        this.$emit('clear')
+        return
+      }
+
+      if (this.isAlreadySelected) {
+        return
+      }
+
       this.currentMonthIndex = index
       this.onChange()
       if (input) {
-        this.$emit("input", this.date)
+        this.$emit('input', this.date)
       }
     },
-    nextYear() {
-      this.year += 1
+    changeYear(value) {
+      this.year += value
       this.onChange()
-    },
-    prevYear() {
-      this.year -= 1
-      this.onChange()
+      this.$emit('change-year', this.year)
     }
   }
 }
@@ -178,6 +155,10 @@ export default {
   background-color: rgba(0, 0, 0, .025);
 }
 
+.month-picker-year button:active {
+  background-color: rgba(0, 0, 0, .04);
+}
+
 .month-picker-year button:first-child {
   left: 10px;
 }
@@ -200,8 +181,8 @@ export default {
   color: #ffffff;
   border-radius: 5px;
   box-shadow: inset 0 0 3px #3490d2, 0px 2px 5px rgba(85, 176, 242, 0.2);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
   font-weight: 800;
-  letter-spacing: 0.1px;
 }
 
 .month-picker .month-picker-month:hover {

@@ -84,57 +84,88 @@ export default {
 ```
 
 ## Api
+_The MonthPicker and the MonthPickerInput shares the same props and events._
 
 ### Props 
 
-_The MonthPicker and the MonthPickerInput shares the same props._
-
-###### _(Type): (default)_
-
-**lang** _String: en_
-
-The language of the months. 
-Valid values: en, no.
-
-**months** _Array_
-
-If your language is not supported you can supply your own array of months here.
-
-**default-month** _Number: 0_
-
-The default selected month of the month picker. To show the month picker unselected, use the no-default prop.
-
-**default-year** _Number: this year_
-
-The default year of the month picker.
-
-**no-default** _Boolean: false_
-
-Show the month picker unselected.
-
-**show-year** _Boolean: true_
-
-Show the year picker.
+| Prop                          | Type            | Default     | Description                              |
+|-------------------------------|-----------------|-------------|------------------------------------------|
+| lang                         	| String    			| en          | The language of the months.	             |
+| months                        | Array	          | []          | Custom months if language is unsupported.|
+| default-month                 | Integer         |             | The default selected month of the month picker. To show the month picker unselected, use the no-default prop.                                 																			 |
+| default-year                  | Integer 				| 					  | The default year of the month picker.    |
+| no-default		                | Boolean         | false       | Show the month picker unselected.        |
+| show-year                     | Boolean         | false       | Show the year picker. 					         |
+| clearable											| Boolean					| false				| Possible to clear the chosen month.			 |
 
 ### Events
 
-**@change** _Object_
-
-Indicates that the value has been changed. NB, this will fire when a default value has been selected when the month picker is mounted. Use the input event if you want the value the user has selected.
-
-
-**@input** _Object_
-
-Indicates that the value has been changed by the user.
+| Event                         | Returns         | Description                              |
+|-------------------------------|-----------------|------------------------------------------|
+| @change                      	| Object    			| Indicates that the value has been changed. NB, this will fire when a default value has been selected when the month picker is mounted. Use the input event if you want the value the user has selected.	             |
+| @change-year									| Number					| Indicates that the year has been changed. Will emit the year value. |
+| @input                        | Object	        | Indicates that the value has been changed by the user.|
+| @clear												|									| Indicates that user have cleared the selected value |
 
 #### _Date object_
 
-Both events returns a date object with the following properties:
+Change and input events returns a date object with the following properties:
 - ```from```: Start of the month.
 - ```to```: End of the month.
 - ```month```: Selected month.
 - ```monthIndex```: Selected month index.
 - ```year```: Selected year.
+
+## Translations
+
+Available languages
+| Abbr	| Language			|
+|-------|---------------|
+| af		| Afrikaans 		|
+| ar		| Arabic 				|
+| cs		| Czech 				|
+| da		| Danish 				|		
+| el		| Greek					|
+| en		| English				|
+|	es		|	Spanish				|
+| et		| Estonian			|
+| fi		| Finnish				|
+| fr		| French				|
+| hi		| Hindi					|
+| hr		| Croatian			|
+|	hu		| Hungarian			|
+|	id		| Indonesian		|
+| is		| Icelandic			|
+| it		| Italian				|
+| ja		| Japanese			|
+| km		| Khmer					|
+| ku		| Kurdish				|
+| lt		| Lithuanian		|
+| lv		| Latvian				|
+| ms		| Malay					|
+| ne		| Nepali				|
+| nl		| Dutch					|
+| no		|	Norwegian			|
+| pa		|	Panjabi				|
+|	pl		| Polish				|
+| pt		| Portuguese		|
+| ru		| Russian				|
+| sv		| Swedish				|
+|	sk		| Slovak				|
+| sl		|	Slovenian			|
+| so		| Somali				|
+| sq		|	Albanian			|
+| th		| Thai					|
+| tr		| Turkish				|
+| uk		| Ukrainian			|
+| ur		| Urdu					|
+| vi		| Vietnamese		|
+|	yi		| Yiddish				|
+| zh		| Chinese				|
+| zu		| Zulu					|
+
+**My language is unsupported**
+You could add it in the languages.js file and create a pull request. You could also create a issue about the missing language. If you don't want to do that you can use the _months_ property and supply your own array of 12 string values.
 
 ## Contributing
 

@@ -12,23 +12,38 @@
 			<h1>vue-month-picker</h1>
 
 			<h4>Inline</h4>
+			<strong>@change: string date</strong>
 			<p>{{ date }}</p>
-			<month-picker @change="showDate"></month-picker>
+			<strong>@clear <em>{{ clearEmittedText }}</em></strong>
+
+			<strong></strong>
+			<month-picker
+				@change="showDate"
+				@change-year="(v) => year = v"
+				@clear="showClearText"
+				lang="en"
+				:clearable="true"
+			>
+			</month-picker>
 			
 			<h4>Input</h4>
-			<month-picker-input :no-default="true"></month-picker-input>
+			<month-picker-input
+				:no-default="true"
+			></month-picker-input>
 		</div>
 	</div>
 </template>
 
 <script>
-import MonthPicker from '@/MonthPicker'
-import MonthPickerInput from '@/MonthPickerInput'
+import MonthPicker from '@/MonthPicker.vue'
+import MonthPickerInput from '@/MonthPickerInput.vue'
 
 export default {
 	data() {
 		return {
-			monthPickerVisible: false,
+			year: 0,
+			clearEmittedText: null,
+			isMonthPickerVisible: false,
 			selectedDate: null,
 			date: {
 				from: null,
@@ -43,6 +58,12 @@ export default {
 		MonthPickerInput
 	},
 	methods: {
+		showClearText () {
+			this.clearEmittedText = 'emitted'
+			window.setTimeout(() => {
+				this.clearEmittedText = null
+			}, 1000)
+		},
 		showDate (date) {
 			this.date = date
 		}

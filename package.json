@@ -1,24 +1,23 @@
 {
   "name": "vue-month-picker",
-  "version": "1.0.2",
-  "description": "A simple and elegant month picker for Vue",
+  "version": "1.1.0",
   "main": "src/index.js",
-  "homepage": "https://github.com/kleinrein/vue-month-picker",
+  "description": "A simple and elegant month picker for Vue",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "poi --prod",
+    "dev": "poi --serve"
   },
-  "poi": {
-    "entry": "example/index.js",
-    "dist": "example/dist"
-  },
+  "homepage": "https://github.com/kleinrein/vue-month-picker",
   "keywords": [
     "vue",
     "month",
-    "year"    
+    "year"
   ],
   "author": "Andreas Rein",
   "license": "MIT",
   "devDependencies": {
-    "poi": "^10.1.9"
+    "poi": "^12.4.3",
+    "vue": "^2.5.22",
+    "vue-template-compiler": "^2.5.22"
   }
 }

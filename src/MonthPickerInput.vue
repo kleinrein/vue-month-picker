@@ -1,13 +1,15 @@
 <template>
   <div
     class="month-picker-input-container"
-    v-click-outside="hide">
+    v-click-outside="hide"
+  >
     <input
       class="month-picker-input"
       type="text"
       v-model="selectedDate"
       @click="showMonthPicker()"
-      readonly>
+      readonly
+    >
     <month-picker
       v-show="monthPickerVisible"
       @input="populateInput"
@@ -16,54 +18,21 @@
       :lang="lang"
       :months="months"
       :no-default="noDefault"
-      :show-year="showYear">
+      :show-year="showYear"
+      :clearable="clearable"
+    >
     </month-picker>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import MonthPicker from './MonthPicker'
+import MonthPicker from './MonthPicker.vue'
+import monthPicker from './month-picker'
 
 export default {
   name: 'en',
-  props: {
-    lang: {
-      type: String,
-      default: 'en',
-      validator: function (value) {
-        return ['en'].indexOf(value) !== -1
-      },
-      required: false
-    },
-    months: {
-      default: null,
-      validator: function (value) {
-        return value.length !== 12
-      },
-      required: false
-    },
-    showYear: {
-      type: Boolean,
-      default: true,
-      required: false
-    },
-    defaultMonth: {
-      type: Number,
-      default: null,
-      required: false
-    },
-    defaultYear: {
-      type: Number,
-      default: null,
-      required: false
-    },
-    noDefault: {
-      type: Boolean,
-      default: false,
-      required: false
-    }
-  },
+  mixins: [monthPicker],
   directives: {
     clickOutside: {
       bind: function (el, binding, vnode) {
@@ -82,7 +51,7 @@ export default {
   data() {
     return {
       monthPickerVisible: false,
-			selectedDate: null,
+			selectedDate: null
     }
   },
   components: {

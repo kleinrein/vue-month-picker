@@ -166,6 +166,7 @@ Available languages
 | zu		| Zulu					|
 
 **My language is unsupported**
+
 You could add it in the languages.js file and create a pull request. You could also create a issue about the missing language. If you don't want to do that you can use the _months_ property and supply your own array of 12 string values.
 
 ## Contributing

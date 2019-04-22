@@ -1,10 +1,24 @@
 <template>
-  <div class="month-picker-container">
-    <div class="month-picker-year" v-if="showYear">
+  <div
+    class="month-picker-container"
+    :class="`month-picker--${variant}`"
+  >
+    <div
+      v-if="showYear"
+      class="month-picker-year"
+    >
       <button @click="changeYear(-1)">
         &lsaquo;
       </button>
-      <p>{{ year }}</p>
+      <p v-if="!editableYear">
+        {{ year }}
+      </p>
+      <input
+        v-else
+        type="text"
+        v-model.number="year"
+        @change="onChange()"
+      >
       <button @click="changeYear(+1)">
         &rsaquo;
       </button>
@@ -109,7 +123,7 @@ export default {
 .month-picker-container {
   width: 400px;
   position: relative;
-  border: 1px solid #dddddd;
+  border: 1px solid #DDDDDD;
   border-radius: 5px;
 }
 
@@ -133,6 +147,26 @@ export default {
   font-size: 1.2em;
 }
 
+.month-picker-year input {
+  padding: 0;
+  font-weight: 600;
+  border-radius: 5px 5px 0 0;
+  outline: none;
+  border: none;
+  font-size: 1.2em;
+  width: auto;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 3em;
+  position: relative;
+  z-index: 1;
+}
+
+.month-picker-year input:focus {
+  border: 1px solid #55B0F2;
+}
+
 .month-picker-year div,
 .month-picker-year button,
 .month-picker-year p {
@@ -141,6 +175,7 @@ export default {
 }
 
 .month-picker-year button {
+  background-color: #FFFFFF;
   position: absolute;
   width: 2em;
   font-size: 1.5em;
@@ -148,7 +183,8 @@ export default {
   outline: none;
   border: 0;
   top: 10px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #E8E8E8;
+  z-index: 2;
 }
 
 .month-picker-year button:hover {
@@ -174,18 +210,46 @@ export default {
   text-align: center;
   border: 1px solid rgba(245, 245, 245, .75);
   transition: all 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  background-color: #FEFEFE;
 }
 
 .month-picker-month.selected {
-  background-color: #55b0f2;
-  color: #ffffff;
+  background-color: #55B0F2;
+  color: #FFFFFF;
   border-radius: 5px;
   box-shadow: inset 0 0 3px #3490d2, 0px 2px 5px rgba(85, 176, 242, 0.2);
   text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
-  font-weight: 800;
 }
 
 .month-picker .month-picker-month:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.month-picker--dark {
+  background-color: #5F5F5F;
+}
+
+.month-picker--dark .month-picker-year p,
+.month-picker--dark .month-picker-year input {
+  color: #EBEBEB;
+}
+
+.month-picker--dark .month-picker-year button {
+  background-color: #505050;
+  color: #C9C9C9;
+  border-color: #1E1E1E;
+}
+
+.month-picker--dark .month-picker-month {
+  background-color: #2F2F30;
+  border-color: rgba(245, 245, 245, .15);
+  color: #C9C9C9;
+}
+
+.month-picker--dark .month-picker-month.selected {
+  background-color: #505050;
+  box-shadow: inset 0 0 3px #505050, 0px 2px 5px #505050;
+  color: #FFFFFF;
+  border-color: #1E1E1E;
 }
 </style>

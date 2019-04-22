@@ -1,6 +1,6 @@
 {
   "name": "vue-month-picker",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "src/index.js",
   "description": "A simple and elegant month picker for Vue",
   "scripts": {
@@ -11,7 +11,8 @@
   "keywords": [
     "vue",
     "month",
-    "year"
+    "year",
+    "picker"
   ],
   "author": "Andreas Rein",
   "license": "MIT",

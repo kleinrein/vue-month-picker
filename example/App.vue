@@ -16,13 +16,25 @@
 			<p>{{ date }}</p>
 			<strong>@clear <em>{{ clearEmittedText }}</em></strong>
 
-			<strong></strong>
+			<br><br>
 			<month-picker
 				@change="showDate"
 				@change-year="(v) => year = v"
 				@clear="showClearText"
 				lang="en"
 				:clearable="true"
+				variant="default"
+			>
+			</month-picker>
+			<br><br>
+
+			<month-picker
+				@change="showDate"
+				@change-year="(v) => year = v"
+				@clear="showClearText"
+				lang="en"
+				:clearable="true"
+				variant="dark"
 			>
 			</month-picker>
 			

@@ -141,6 +141,7 @@ Available languages
 | it		| Italian				|
 | ja		| Japanese			|
 | km		| Khmer					|
+| ko    | Korean 				|
 | ku		| Kurdish				|
 | lt		| Lithuanian		|
 | lv		| Latvian				|

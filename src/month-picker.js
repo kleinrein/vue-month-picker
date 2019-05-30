@@ -14,7 +14,7 @@ export default {
       type: Array,
       default: null,
       validator: function (value) {
-        return value.length !== 12
+        return value.length === 12
       },
       required: false
     },

@@ -17,6 +17,7 @@ export default {
   it: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Potrebbe', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
   ja: ['1月', '2月', '行進', '「4月」', '5月', '六月', '「7月」', '「8月」', '9月', '10月', '「11月」', '「12月」'],
   km: ['មករា', 'កុម្ភៈ', 'ខែមីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'ខែវិច្ឆិកា', 'ខែធ្នូ'],
+  ko: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
   ku: ['Rêbendan', 'Reşemî', 'Adar', 'Avrêl', 'Gulan', 'Pûşper', 'Tîrmeh', 'Tebax', 'Îlon', 'Cotmeh', 'Mijdar', 'Berfanbar'],
   lt: ['Sausis', 'Vasario mėn', 'Kovas', 'Balandis', 'Gegužė', 'Birželis', 'Liepos', 'Rugpjūtis', 'Rugsėjis', 'Spalio mėn', 'Lapkritis', 'Gruodis'],
   lv: ["Janvāris", "Februāris", "Marts", "Aprīlis", "Maijs", 'Jūnijs', "Jūlijs", 'Augusts', "Septembris", "Oktobris", "Novembris", 'Decembris'],

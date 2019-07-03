@@ -20,6 +20,8 @@
       :no-default="noDefault"
       :show-year="showYear"
       :clearable="clearable"
+      :variant="variant"
+      :editable-year="editableYear"
     >
     </month-picker>
   </div>

@@ -14,7 +14,7 @@ export default {
       type: Array,
       default: null,
       validator: function (value) {
-        return value.length !== 12
+        return value.length === 12
       },
       required: false
     },
@@ -33,6 +33,11 @@ export default {
       default: true,
       required: false
     },
+    editableYear: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
     noDefault: {
       type: Boolean,
       default: false,
@@ -42,6 +47,14 @@ export default {
       type: Boolean,
       default: false,
       required: false
+    },
+    variant: {
+      type: String,
+      default: 'default',
+      required: false,
+      validator: function (value) {
+        return ['default', 'dark'].includes(value)
+      }
     }
   }
 }

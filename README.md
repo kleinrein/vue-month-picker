@@ -1,7 +1,6 @@
 [![NPM version](https://img.shields.io/npm/v/vue-month-picker.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
 [![NPM downloads](https://img.shields.io/npm/dm/vue-month-picker.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
 
-
 # vue-month-picker
 
 A lightweight month picker for Vue.js with no dependencies.
@@ -96,7 +95,9 @@ _The MonthPicker and the MonthPickerInput shares the same props and events._
 | default-year                  | Integer 				| 					  | The default year of the month picker.    |
 | no-default		                | Boolean         | false       | Show the month picker unselected.        |
 | show-year                     | Boolean         | false       | Show the year picker. 					         |
+| editable-year									| Boolean					| false				| Year appears as a input field.					 |
 | clearable											| Boolean					| false				| Possible to clear the chosen month.			 |
+| variant												| String					| default			| Color variant. Currently supports default and dark. |
 
 ### Events
 
@@ -119,6 +120,7 @@ Change and input events returns a date object with the following properties:
 ## Translations
 
 Available languages
+
 | Abbr	| Language			|
 |-------|---------------|
 | af		| Afrikaans 		|
@@ -139,6 +141,7 @@ Available languages
 | it		| Italian				|
 | ja		| Japanese			|
 | km		| Khmer					|
+| ko    | Korean 				|
 | ku		| Kurdish				|
 | lt		| Lithuanian		|
 | lv		| Latvian				|
@@ -165,6 +168,7 @@ Available languages
 | zu		| Zulu					|
 
 **My language is unsupported**
+
 You could add it in the languages.js file and create a pull request. You could also create a issue about the missing language. If you don't want to do that you can use the _months_ property and supply your own array of 12 string values.
 
 ## Contributing

@@ -126,7 +126,8 @@ Available languages
 | af		| Afrikaans 		|
 | ar		| Arabic 				|
 | cs		| Czech 				|
-| da		| Danish 				|		
+| da		| Danish 				|
+| de    | German        |
 | el		| Greek					|
 | en		| English				|
 |	es		|	Spanish				|

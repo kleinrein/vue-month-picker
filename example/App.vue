@@ -22,7 +22,7 @@
 				@change-year="(v) => year = v"
 				@clear="showClearText"
 				lang="en"
-				:clearable="true"
+				clearable
 				variant="default"
 			>
 			</month-picker>
@@ -33,7 +33,7 @@
 				@change-year="(v) => year = v"
 				@clear="showClearText"
 				lang="en"
-				:clearable="true"
+				clearable
 				variant="dark"
 			>
 			</month-picker>

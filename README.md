@@ -158,6 +158,7 @@ Available languages
 |	sk		| Slovak				|
 | sl		|	Slovenian			|
 | so		| Somali				|
+| sr    | Serbian       |
 | sq		|	Albanian			|
 | th		| Thai					|
 | tr		| Turkish				|

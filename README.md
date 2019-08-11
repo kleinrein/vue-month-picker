@@ -126,7 +126,8 @@ Available languages
 | af		| Afrikaans 		|
 | ar		| Arabic 				|
 | cs		| Czech 				|
-| da		| Danish 				|		
+| da		| Danish 				|
+| de    | German        |
 | el		| Greek					|
 | en		| English				|
 |	es		|	Spanish				|
@@ -157,6 +158,7 @@ Available languages
 |	sk		| Slovak				|
 | sl		|	Slovenian			|
 | so		| Somali				|
+| sr    | Serbian       |
 | sq		|	Albanian			|
 | th		| Thai					|
 | tr		| Turkish				|

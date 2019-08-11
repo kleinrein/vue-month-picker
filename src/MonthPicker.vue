@@ -10,7 +10,9 @@
       <button @click="changeYear(-1)">
         &lsaquo;
       </button>
-      <p v-if="!editableYear">
+      <p
+        v-if="!editableYear"
+      >
         {{ year }}
       </p>
       <input
@@ -26,8 +28,11 @@
     <div class="month-picker">
       <div
         v-for="(month, i) in monthsByLang"
-        :key="month" 
-        :class="currentMonth === month ? 'selected' : ''"
+        :key="month"
+        :class="{
+          'clearable': clearable,
+          'selected': currentMonth === month
+        }"
         class="month-picker-month"
         @click="selectMonth(i, true)"
       >
@@ -44,12 +49,10 @@ import monthPicker from './month-picker'
 export default {
   name: 'en',
   mixins: [monthPicker],
-  data() {
-    return {
-      currentMonthIndex: null,
-      year: new Date().getFullYear()
-    }
-  },
+  data: () => ({
+    currentMonthIndex: null,
+    year: new Date().getFullYear()
+  }),
   computed: {
     monthsByLang: function() {
       if (this.months !== null && 
@@ -185,14 +188,15 @@ export default {
   top: 10px;
   border: 1px solid #E8E8E8;
   z-index: 2;
+  color: #686868;
 }
 
 .month-picker-year button:hover {
-  background-color: rgba(0, 0, 0, .025);
+  background-color: rgba(0, 0, 0, 0.025);
 }
 
 .month-picker-year button:active {
-  background-color: rgba(0, 0, 0, .04);
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 .month-picker-year button:first-child {
@@ -223,8 +227,10 @@ export default {
 
 .month-picker .month-picker-month:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
+/* Dark theme */
 .month-picker--dark {
   background-color: #5F5F5F;
 }
@@ -234,10 +240,22 @@ export default {
   color: #EBEBEB;
 }
 
+.month-picker--dark .month-picker-year input {
+  background-color: #5F5F5F;
+}
+
 .month-picker--dark .month-picker-year button {
   background-color: #505050;
   color: #C9C9C9;
   border-color: #1E1E1E;
+}
+
+.month-picker--dark .month-picker-year button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.month-picker--dark .month-picker-year button:active {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .month-picker--dark .month-picker-month {
@@ -251,5 +269,10 @@ export default {
   box-shadow: inset 0 0 3px #505050, 0px 2px 5px #505050;
   color: #FFFFFF;
   border-color: #1E1E1E;
+}
+
+.month-picker--dark .month-picker-month:hover {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  z-index: 10;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div
-    class="month-picker-container"
+    class="month-picker__container"
     :class="`month-picker--${variant}`"
   >
     <div
       v-if="showYear"
-      class="month-picker-year"
+      class="month-picker__year"
     >
       <button @click="changeYear(-1)">
         &lsaquo;
@@ -33,7 +33,7 @@
           'clearable': clearable,
           'selected': currentMonth === month
         }"
-        class="month-picker-month"
+        class="month-picker__month"
         @click="selectMonth(i, true)"
       >
         {{ month }}
@@ -80,6 +80,14 @@ export default {
       }
     }
   },
+  watch: {
+    defaultMonth (newVal) {
+      this.currentMonthIndex = newVal
+    },
+    defaultYear (newVal) {
+      this.year = newVal
+    }
+  },
   mounted() {
     if (this.defaultMonth) {
       this.selectMonth(this.defaultMonth - 1)
@@ -93,6 +101,10 @@ export default {
   },
   methods: {
     onChange() {
+      if (!Number.parseInt(this.year)) {
+        this.year = this.defaultYear || new Date().getFullYear()
+      }
+
       this.$emit('change', this.date)
     },
     selectMonth(index, input = false) {
@@ -123,7 +135,7 @@ export default {
 </script>
 
 <style>
-.month-picker-container {
+.month-picker__container {
   width: 400px;
   position: relative;
   border: 1px solid #DDDDDD;
@@ -143,14 +155,14 @@ export default {
   overflow: hidden;
 }
 
-.month-picker-year p {
+.month-picker__year p {
   width: 100%;
   font-weight: 600;
   letter-spacing: 1px;
   font-size: 1.2em;
 }
 
-.month-picker-year input {
+.month-picker__year input {
   padding: 0;
   font-weight: 600;
   border-radius: 5px 5px 0 0;
@@ -166,18 +178,18 @@ export default {
   z-index: 1;
 }
 
-.month-picker-year input:focus {
+.month-picker__year input:focus {
   border: 1px solid #55B0F2;
 }
 
-.month-picker-year div,
-.month-picker-year button,
-.month-picker-year p {
+.month-picker__year div,
+.month-picker__year button,
+.month-picker__year p {
   text-align: center;
   flex: 1;
 }
 
-.month-picker-year button {
+.month-picker__year button {
   background-color: #FFFFFF;
   position: absolute;
   width: 2em;
@@ -191,23 +203,23 @@ export default {
   color: #686868;
 }
 
-.month-picker-year button:hover {
+.month-picker__year button:hover {
   background-color: rgba(0, 0, 0, 0.025);
 }
 
-.month-picker-year button:active {
+.month-picker__year button:active {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
-.month-picker-year button:first-child {
+.month-picker__year button:first-child {
   left: 10px;
 }
 
-.month-picker-year button:last-child {
+.month-picker__year button:last-child {
   right: 10px;
 }
 
-.month-picker-month {
+.month-picker__month {
   flex-basis: calc(33.333% - 10px);
   padding: 0.75em 0.25em;
   cursor: pointer;
@@ -217,7 +229,7 @@ export default {
   background-color: #FEFEFE;
 }
 
-.month-picker-month.selected {
+.month-picker__month.selected {
   background-color: #55B0F2;
   color: #FFFFFF;
   border-radius: 5px;
@@ -225,7 +237,7 @@ export default {
   text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 }
 
-.month-picker .month-picker-month:hover {
+.month-picker .month-picker__month:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
@@ -235,44 +247,50 @@ export default {
   background-color: #5F5F5F;
 }
 
-.month-picker--dark .month-picker-year p,
-.month-picker--dark .month-picker-year input {
+.month-picker--dark .month-picker__year p,
+.month-picker--dark .month-picker__year input {
   color: #EBEBEB;
 }
 
-.month-picker--dark .month-picker-year input {
+.month-picker--dark .month-picker__year input {
   background-color: #5F5F5F;
 }
 
-.month-picker--dark .month-picker-year button {
+.month-picker--dark .month-picker__year button {
   background-color: #505050;
   color: #C9C9C9;
   border-color: #1E1E1E;
 }
 
-.month-picker--dark .month-picker-year button:hover {
+.month-picker--dark .month-picker__year button:hover {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.month-picker--dark .month-picker-year button:active {
+.month-picker--dark .month-picker__year button:active {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.month-picker--dark .month-picker-month {
+.month-picker--dark .month-picker__month {
   background-color: #2F2F30;
   border-color: rgba(245, 245, 245, .15);
   color: #C9C9C9;
 }
 
-.month-picker--dark .month-picker-month.selected {
+.month-picker--dark .month-picker__month.selected {
   background-color: #505050;
   box-shadow: inset 0 0 3px #505050, 0px 2px 5px #505050;
   color: #FFFFFF;
   border-color: #1E1E1E;
 }
 
-.month-picker--dark .month-picker-month:hover {
+.month-picker--dark .month-picker__month:hover {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
   z-index: 10;
+}
+
+@media only screen and (max-width: 768px) {
+  .month-picker__container {
+    width: 100%;
+  }
 }
 </style>

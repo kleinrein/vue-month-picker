@@ -41,7 +41,8 @@
 			<h4>Input</h4>
 			<month-picker-input
 				:no-default="true"
-			></month-picker-input>
+			>
+			</month-picker-input>
 		</div>
 	</div>
 </template>

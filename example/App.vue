@@ -11,7 +11,48 @@
 		<div class="content">
 			<h1>vue-month-picker</h1>
 
-			<h4>Inline</h4>
+			<h2>Parameters</h2>
+
+			<label class="form__label">
+				<input
+					v-model="showYear"
+					type="checkbox"
+				>
+				show-year
+			</label>
+
+			<label class="form__label">
+				<input
+					v-model="isClearable"
+					type="checkbox"
+				>
+				clearable
+			</label>
+
+			<label class="form__label">
+				<input
+					v-model="isEditableYear"
+					type="checkbox"
+				>
+				editable-year
+			</label>
+
+			<label class="form__label">
+				variant
+				<select
+					v-model="selectedVariant"
+				>
+					<option
+						v-for="variant in variants"
+						:key="`variant-${variant}`"
+						:value="variant"
+					>
+						{{ variant }}
+					</option>
+				</select>
+			</label>
+
+			<h3>Inline</h3>
 			<strong>@change: string date</strong>
 			<p>{{ date }}</p>
 			<strong>@clear <em>{{ clearEmittedText }}</em></strong>
@@ -22,23 +63,15 @@
 				@change-year="(v) => year = v"
 				@clear="showClearText"
 				lang="en"
-				clearable
-				variant="default"
+				:clearable="isClearable"
+				:editable-year="isEditableYear"
+				:variant="selectedVariant"
+				:show-year="showYear"
 			>
 			</month-picker>
 			<br><br>
-
-			<month-picker
-				@change="showDate"
-				@change-year="(v) => year = v"
-				@clear="showClearText"
-				lang="en"
-				clearable
-				variant="dark"
-			>
-			</month-picker>
 			
-			<h4>Input</h4>
+			<h3>Input</h3>
 			<month-picker-input
 				:no-default="true"
 			>
@@ -57,7 +90,12 @@ export default {
 			year: 0,
 			clearEmittedText: null,
 			isMonthPickerVisible: false,
+			isClearable: true,
+			isEditableYear: false,
+			showYear: true,
 			selectedDate: null,
+			variants: ['default', 'dark'],
+			selectedVariant: 'default',
 			date: {
 				from: null,
 				to: null,
@@ -84,13 +122,19 @@ export default {
 }
 </script>
 
+<style>
+	body {
+		background-color: #FEFEFE;
+	}
+</style>
+
 <style scoped>
-	@import url('https://fonts.googleapis.com/css?family=Lato');
+	@import url('https://fonts.googleapis.com/css?family=Oxygen&display=swap');
 
 	.content {
 		max-width: 800px;
 		margin: 0 auto;
-		font-family: 'Lato', sans-serif;
+		font-family: 'Oxygen', sans-serif;
 	}
 
 	.content h1 {
@@ -100,6 +144,10 @@ export default {
 
 	.github-corner:hover .octo-arm {
 		animation: octocat-wave 560ms ease-in-out;
+	}
+
+	.form__label {
+		display: block;
 	}
 
 	@keyframes octocat-wave {

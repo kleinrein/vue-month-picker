@@ -153,6 +153,7 @@ Available languages
 | pa		|	Panjabi				|
 |	pl		| Polish				|
 | pt		| Portuguese		|
+| ro    | Romanian 			|
 | ru		| Russian				|
 | sv		| Swedish				|
 |	sk		| Slovak				|

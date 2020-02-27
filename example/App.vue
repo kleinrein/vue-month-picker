@@ -73,7 +73,9 @@
 			
 			<h3>Input</h3>
 			<month-picker-input
-				:no-default="true"
+				:default-month="new Date().getMonth()"
+				:default-year="new Date().getFullYear()"
+				:input-pre-filled="true"
 			>
 			</month-picker-input>
 		</div>

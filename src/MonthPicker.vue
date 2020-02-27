@@ -54,13 +54,6 @@ export default {
     year: new Date().getFullYear()
   }),
   computed: {
-    monthsByLang: function() {
-      if (this.months !== null && 
-          this.months.length === 12) {
-        return this.months
-      }
-      return languages[this.lang]
-    },
     currentMonth: function() {
       if (this.currentMonthIndex !== null) {
         return this.monthsByLang[this.currentMonthIndex]

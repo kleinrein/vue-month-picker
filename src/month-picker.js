@@ -48,6 +48,11 @@ export default {
       default: false,
       required: false
     },
+    inputPreFilled: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
     variant: {
       type: String,
       default: 'default',
@@ -55,6 +60,15 @@ export default {
       validator: function (value) {
         return ['default', 'dark'].includes(value)
       }
+    }
+  },
+  computed: {
+    monthsByLang: function() {
+      if (this.months !== null &&
+        this.months.length === 12) {
+        return this.months
+      }
+      return languages[this.lang]
     }
   }
 }

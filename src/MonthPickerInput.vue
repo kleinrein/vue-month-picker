@@ -4,24 +4,24 @@
       v-click-outside="hide"
   >
     <input
-        class="month-picker-input"
-        type="text"
-        v-model="selectedDate"
-        @click="showMonthPicker()"
-        readonly
+      class="month-picker-input"
+      type="text"
+      v-model="selectedDate"
+      @click="showMonthPicker()"
+      readonly
     >
     <month-picker
-        v-show="monthPickerVisible"
-        @input="populateInput"
-        :default-year="defaultYear"
-        :default-month="defaultMonth"
-        :lang="lang"
-        :months="months"
-        :no-default="noDefault"
-        :show-year="showYear"
-        :clearable="clearable"
-        :variant="variant"
-        :editable-year="editableYear"
+      v-show="monthPickerVisible"
+      @input="populateInput"
+      :default-year="defaultYear"
+      :default-month="defaultMonth"
+      :lang="lang"
+      :months="months"
+      :no-default="noDefault"
+      :show-year="showYear"
+      :clearable="clearable"
+      :variant="variant"
+      :editable-year="editableYear"
     >
     </month-picker>
   </div>
@@ -90,12 +90,12 @@ export default {
     font-size: .85em;
     border-radius: 5px;
     outline: none;
-    border: 1px solid rgba(0, 0, 0, .15);
+    border: 1px solid rgba(0,0,0,.15);
     transition: all 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
   .month-picker-input:focus {
-    border-color: rgba(0, 0, 0, .25);
+    border-color: rgba(0,0,0,.25);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 

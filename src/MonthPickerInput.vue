@@ -1,7 +1,7 @@
 <template>
   <div
-      class="month-picker-input-container"
-      v-click-outside="hide"
+    class="month-picker-input-container"
+    v-click-outside="hide"
   >
     <input
       class="month-picker-input"

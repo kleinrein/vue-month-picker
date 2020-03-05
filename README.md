@@ -89,15 +89,16 @@ _The MonthPicker and the MonthPickerInput shares the same props and events._
 
 | Prop                          | Type            | Default     | Description                              |
 |-------------------------------|-----------------|-------------|------------------------------------------|
-| lang                         	| String    			| en          | The language of the months.	             |
+| lang                         	| String    	  | en          | The language of the months.	             |
 | months                        | Array	          | []          | Custom months if language is unsupported.|
 | default-month                 | Integer         |             | The default selected month of the month picker. To show the month picker unselected, use the no-default prop.                                 																			 |
-| default-year                  | Integer 				| 					  | The default year of the month picker.    |
-| no-default		                | Boolean         | false       | Show the month picker unselected.        |
+| default-year                  | Integer 		  | 					  | The default year of the month picker.    |
+| input-pre-filled              | Boolean 		  | 					  | The default year of the month picker.    |
+| no-default		            | Boolean         | false       | Show the month and the year defined as a value on input. It works only if the parameters default-year and default-month are defined        |
 | show-year                     | Boolean         | false       | Show the year picker. 					         |
-| editable-year									| Boolean					| false				| Year appears as a input field.					 |
-| clearable											| Boolean					| false				| Possible to clear the chosen month.			 |
-| variant												| String					| default			| Color variant. Currently supports default and dark. |
+| editable-year									  | Boolean					| false				| Year appears as a input field.					 |
+| clearable										  | Boolean					| false				| Possible to clear the chosen month.			 |
+| variant										  | String					| default			| Color variant. Currently supports default and dark. |
 
 ### Events
 

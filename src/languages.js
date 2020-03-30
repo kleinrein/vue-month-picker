@@ -20,7 +20,7 @@ export default {
   km: ['មករា', 'កុម្ភៈ', 'ខែមីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'ខែវិច្ឆិកា', 'ខែធ្នូ'],
   ko: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
   ku: ['Rêbendan', 'Reşemî', 'Adar', 'Avrêl', 'Gulan', 'Pûşper', 'Tîrmeh', 'Tebax', 'Îlon', 'Cotmeh', 'Mijdar', 'Berfanbar'],
-  lt: ['Sausis', 'Vasario mėn', 'Kovas', 'Balandis', 'Gegužė', 'Birželis', 'Liepos', 'Rugpjūtis', 'Rugsėjis', 'Spalio mėn', 'Lapkritis', 'Gruodis'],
+  lt: ['Sausis', 'Vasaris', 'Kovas', 'Balandis', 'Gegužė', 'Birželis', 'Liepa', 'Rugpjūtis', 'Rugsėjis', 'Spalis', 'Lapkritis', 'Gruodis'],
   lv: ["Janvāris", "Februāris", "Marts", "Aprīlis", "Maijs", 'Jūnijs', "Jūlijs", 'Augusts', "Septembris", "Oktobris", "Novembris", 'Decembris'],
   ms: ['Januari', 'Februari', 'Mac', 'April', 'Mungkin', 'Jun', 'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember'],
   ne: ['जनवरी', 'फेब्रुअरी', 'मार्च', 'अप्रिल', 'सक्छ', 'जुन', 'जुलाई', 'अगस्ट', 'सेप्टेम्बर', 'अक्टोबर', 'नोभेम्बर', 'डिसेम्बर'],

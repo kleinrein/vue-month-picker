@@ -7,7 +7,10 @@
       v-if="showYear"
       class="month-picker__year"
     >
-      <button @click="changeYear(-1)">
+      <button
+        @click="changeYear(-1)"
+        type="button"
+      >
         &lsaquo;
       </button>
       <p
@@ -21,7 +24,10 @@
         v-model.number="year"
         @change="onChange()"
       >
-      <button @click="changeYear(+1)">
+      <button
+        @click="changeYear(+1)"
+        type="button"
+      >
         &rsaquo;
       </button>
     </div>

@@ -89,14 +89,14 @@ export default {
     }
   },
   mounted() {
+    if (this.defaultYear) {
+      this.year = this.defaultYear
+    }
+
     if (this.defaultMonth) {
       this.selectMonth(this.defaultMonth - 1)
     } else if (!this.noDefault) {
       this.selectMonth(0)
-    }
-
-    if (this.defaultYear) {
-      this.year = this.defaultYear
     }
   },
   methods: {

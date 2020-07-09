@@ -13,7 +13,7 @@ export default {
   hi: ['जनवरी ', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसम्बर'],
   hr: ['Siječanj', 'Veljača', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj', 'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'],
   hu: ['Január', 'Február', 'Március', 'Április', 'Lehet', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December'],
-  id: ['Januari', 'Februari', 'Maret', 'April', 'Mungkin', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+  id: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
   is: ["Janúar", "Febrúar", "Mars", "Apríl", "Maí", "Júní", "Júlí", "Ágúst", 'September', 'Október', "Nóvember", "Desember"],
   it: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
   ja: ['1月', '2月', '行進', '「4月」', '5月', '六月', '「7月」', '「8月」', '9月', '10月', '「11月」', '「12月」'],

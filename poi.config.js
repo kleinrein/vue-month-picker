@@ -1,4 +1,8 @@
 module.exports = {
   entry: 'example/index',
-  plugins: []
+  plugins: [
+    {
+      resolve: '@poi/plugin-eslint'
+    }
+  ]
 }

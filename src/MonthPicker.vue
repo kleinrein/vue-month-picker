@@ -10,7 +10,10 @@
       v-if="showYear"
       class="month-picker__year"
     >
-      <button @click="changeYear(-1)">
+      <button
+        @click="changeYear(-1)"
+        type="button"
+      >
         &lsaquo;
       </button>
       <p
@@ -24,7 +27,10 @@
         type="text"
         @change="onChange()"
       >
-      <button @click="changeYear(+1)">
+      <button
+        @click="changeYear(+1)"
+        type="button"
+      >
         &rsaquo;
       </button>
     </div>
@@ -67,13 +73,6 @@ export default {
     year: new Date().getFullYear()
   }),
   computed: {
-    monthsByLang: function() {
-      if (this.months !== null && 
-          this.months.length === 12) {
-        return this.months
-      }
-      return languages[this.lang]
-    },
     currentMonth: function() {
       if (this.currentMonthIndex !== null) {
         return this.monthsByLang[this.currentMonthIndex]
@@ -104,14 +103,14 @@ export default {
     }
   },
   mounted() {
+    if (this.defaultYear) {
+      this.year = this.defaultYear
+    }
+
     if (this.defaultMonth) {
       this.selectMonth(this.defaultMonth - 1)
     } else if (!this.noDefault) {
       this.selectMonth(0)
-    }
-
-    if (this.defaultYear) {
-      this.year = this.defaultYear
     }
   },
   methods: {

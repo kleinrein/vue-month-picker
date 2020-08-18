@@ -23,8 +23,8 @@ yarn add --save vue-month-picker
 
 ```js
 import Vue from 'vue'
-import MonthPicker from 'vue-month-picker'
-import MonthPickerInput from 'vue-month-picker'
+import { MonthPicker } from 'vue-month-picker'
+import { MonthPickerInput } from 'vue-month-picker'
 
 Vue.use(MonthPicker)
 Vue.use(MonthPickerInput)
@@ -41,7 +41,7 @@ Vue.use(MonthPickerInput)
 </template>
 
 <script>
-import MonthPickerInput from 'vue-month-picker'
+import { MonthPickerInput } from 'vue-month-picker'
 
 export default {
 	components: {
@@ -61,7 +61,7 @@ export default {
 </template>
 
 <script>
-import MonthPicker from 'vue-month-picker'
+import { MonthPicker } from 'vue-month-picker'
 
 export default {
 	data() {

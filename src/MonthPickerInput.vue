@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import MonthPicker from './MonthPicker.vue'
 import monthPicker from './month-picker'
 
@@ -61,19 +60,27 @@ export default {
   data() {
     return {
       monthPickerVisible: false,
-			selectedDate: null
+      selectedDate: null
+    }
+  },
+  components: {
+    MonthPicker
+  },
+  mounted() {
+    if (this.inputPreFilled && this.defaultMonth !== null && this.defaultYear !== null) {
+      this.selectedDate = `${this.monthsByLang[this.defaultMonth]}, ${this.defaultYear}`
     }
   },
   methods: {
-    populateInput (date) {
-			this.selectedDate = `${date.month}, ${date.year}`
-			this.monthPickerVisible = false
+    populateInput(date) {
+      this.selectedDate = `${date.month}, ${date.year}`
+      this.monthPickerVisible = false
       this.$emit("input", date)
-		},
-		showMonthPicker () {
-			this.monthPickerVisible = !this.monthPickerVisible
     },
-    hide () {
+    showMonthPicker() {
+      this.monthPickerVisible = !this.monthPickerVisible
+    },
+    hide() {
       this.monthPickerVisible = false
     }
   }

@@ -60,7 +60,11 @@ export default {
     },
     maxDate: {
       type: Date,
-      default: null,
+      default: null
+    },
+    inputPreFilled: {
+      type: Boolean,
+      default: false,
       required: false
     },
     variant: {
@@ -70,6 +74,15 @@ export default {
       validator: function (value) {
         return ['default', 'dark'].includes(value)
       }
+    }
+  },
+  computed: {
+    monthsByLang: function() {
+      if (this.months !== null &&
+        this.months.length === 12) {
+        return this.months
+      }
+      return languages[this.lang]
     }
   }
 }

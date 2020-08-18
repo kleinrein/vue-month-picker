@@ -38,6 +38,11 @@ export default {
       default: false,
       required: false
     },
+    yearOnly: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
     noDefault: {
       type: Boolean,
       default: false,
@@ -46,6 +51,16 @@ export default {
     clearable: {
       type: Boolean,
       default: false,
+      required: false
+    },
+    minDate: {
+      type: Date,
+      default: null,
+      required: false
+    },
+    maxDate: {
+      type: Date,
+      default: null,
       required: false
     },
     variant: {

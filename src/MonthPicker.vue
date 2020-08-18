@@ -1,7 +1,10 @@
 <template>
   <div
     class="month-picker__container"
-    :class="`month-picker--${variant}`"
+    :class="{
+      [`month-picker--${variant}`]: true,
+      'year-picker': yearOnly
+    }"
   >
     <div
       v-if="showYear"
@@ -17,19 +20,23 @@
       </p>
       <input
         v-else
-        type="text"
         v-model.number="year"
+        type="text"
         @change="onChange()"
       >
       <button @click="changeYear(+1)">
         &rsaquo;
       </button>
     </div>
-    <div class="month-picker">
+    <div
+      v-if="!yearOnly"
+      class="month-picker"
+    >
       <div
         v-for="(month, i) in monthsByLang"
         :key="month"
         :class="{
+          'inactive': isInactive(month),
           'clearable': clearable,
           'selected': currentMonth === month
         }"
@@ -47,8 +54,14 @@ import languages from './languages'
 import monthPicker from './month-picker'
 
 export default {
-  name: 'en',
+  name: 'MonthPicker',
   mixins: [monthPicker],
+  emits: [
+    'change',
+    'clear',
+    'input',
+    'change-year'
+  ],
   data: () => ({
     currentMonthIndex: null,
     year: new Date().getFullYear()
@@ -65,6 +78,8 @@ export default {
       if (this.currentMonthIndex !== null) {
         return this.monthsByLang[this.currentMonthIndex]
       }
+
+      return null
     },
     date: function() {
       const month = this.monthsByLang.indexOf(this.currentMonth) + 1
@@ -108,6 +123,10 @@ export default {
       this.$emit('change', this.date)
     },
     selectMonth(index, input = false) {
+      if (this.isInactive(index)) {
+        return
+      }
+
       const isAlreadySelected = this.currentMonthIndex === index
       if (this.clearable && isAlreadySelected) {
         this.currentMonthIndex = null
@@ -127,8 +146,36 @@ export default {
     },
     changeYear(value) {
       this.year += value
+      if (this.isInactive(0)) {
+        return
+      }
+
       this.onChange()
       this.$emit('change-year', this.year)
+    },
+    isInactive(month) {
+      let monthValue = month
+      if (this.minDate === null && this.maxDate === null) {
+        return false
+      }
+
+      if (Number.isInteger(monthValue)) {
+        monthValue = this.monthsByLang[monthValue]
+      }
+
+      const monthKey = this.monthsByLang.indexOf(monthValue) + 1
+      const date = new Date(`${this.year}/${monthKey}/01`)
+      const isValidDate = (date) => date !== null && (date instanceof Date)
+
+      if (isValidDate(this.minDate) && date < this.minDate) {
+        return true
+      }
+
+      if (isValidDate(this.maxDate) && date > this.maxDate) {
+        return true
+      }
+
+      return false
     }
   }
 }
@@ -140,6 +187,10 @@ export default {
   position: relative;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
+}
+
+.month-picker__container.year-picker {
+  width: 225px;
 }
 
 .month-picker {
@@ -197,7 +248,7 @@ export default {
   border-radius: 5px;
   outline: none;
   border: 0;
-  top: 10px;
+  top: 0.5em;
   border: 1px solid #E8E8E8;
   z-index: 2;
   color: #686868;
@@ -229,17 +280,29 @@ export default {
   background-color: #FEFEFE;
 }
 
+.month-picker .month-picker__month:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
 .month-picker__month.selected {
   background-color: #55B0F2;
   color: #FFFFFF;
   border-radius: 5px;
   box-shadow: inset 0 0 3px #3490d2, 0px 2px 5px rgba(85, 176, 242, 0.2);
-  text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-.month-picker .month-picker__month:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+.month-picker__month.inactive {
+  background-color: #f0f0f0;
+  color: #8a8a8a;
+  cursor: not-allowed;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.month-picker__month.inactive:hover {
+  box-shadow: none;
 }
 
 /* Dark theme */
@@ -286,6 +349,14 @@ export default {
 .month-picker--dark .month-picker__month:hover {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
   z-index: 10;
+}
+
+.month-picker--dark .month-picker__month.inactive {
+  background-color: #3f3f3f;
+  color: #8a8a8a;
+  cursor: not-allowed;
+  box-shadow: none;
+  text-shadow: none;
 }
 
 @media only screen and (max-width: 768px) {

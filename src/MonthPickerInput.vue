@@ -1,18 +1,17 @@
 <template>
   <div
-    class="month-picker-input-container"
     v-click-outside="hide"
+    class="month-picker-input-container"
   >
     <input
+      v-model="selectedDate"
       class="month-picker-input"
       type="text"
-      v-model="selectedDate"
-      @click="showMonthPicker()"
       readonly
+      @click="showMonthPicker()"
     >
     <month-picker
       v-show="monthPickerVisible"
-      @input="populateInput"
       :default-year="defaultYear"
       :default-month="defaultMonth"
       :lang="lang"
@@ -22,8 +21,11 @@
       :clearable="clearable"
       :variant="variant"
       :editable-year="editableYear"
-    >
-    </month-picker>
+      :max-date="maxDate"
+      :min-date="minDate"
+      :year-only="yearOnly"
+      @input="populateInput"
+    />
   </div>
 </template>
 
@@ -33,8 +35,7 @@ import MonthPicker from './MonthPicker.vue'
 import monthPicker from './month-picker'
 
 export default {
-  name: 'en',
-  mixins: [monthPicker],
+  name: 'MonthPickerInput',
   directives: {
     clickOutside: {
       bind: function (el, binding, vnode) {
@@ -50,15 +51,19 @@ export default {
       }
     }
   },
+  components: {
+		MonthPicker
+	},
+  mixins: [monthPicker],
+  emits: [
+    'input'
+  ],
   data() {
     return {
       monthPickerVisible: false,
 			selectedDate: null
     }
   },
-  components: {
-		MonthPicker
-	},
   methods: {
     populateInput (date) {
 			this.selectedDate = `${date.month}, ${date.year}`

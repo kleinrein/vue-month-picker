@@ -33,7 +33,9 @@ Vue.use(MonthPickerInput)
 ### Examples
 
 **Input**
+
 ```vue
+
 <template>
   <month-picker-input :no-default="true"></month-picker-input>
 </template>
@@ -50,7 +52,9 @@ export default {
 ```
 
 **Inline**
+
 ```vue
+
 <template>
 	<p>{{ date.month }}</p>
   <month-picker @change="showDate"></month-picker>
@@ -83,30 +87,34 @@ export default {
 ```
 
 ## Api
+
 _The MonthPicker and the MonthPickerInput shares the same props and events._
 
-### Props 
+### Props
 
-| Prop                          | Type            | Default     | Description                              |
-|-------------------------------|-----------------|-------------|------------------------------------------|
-| lang                         	| String    			| en          | The language of the months.	             |
-| months                        | Array	          | []          | Custom months if language is unsupported.|
-| default-month                 | Integer         |             | The default selected month of the month picker. To show the month picker unselected, use the no-default prop.                                 																			 |
-| default-year                  | Integer 				| 					  | The default year of the month picker.    |
-| no-default		                | Boolean         | false       | Show the month picker unselected.        |
-| show-year                     | Boolean         | false       | Show the year picker. 					         |
-| editable-year									| Boolean					| false				| Year appears as a input field.					 |
-| clearable											| Boolean					| false				| Possible to clear the chosen month.			 |
-| variant												| String					| default			| Color variant. Currently supports default and dark. |
+| Prop          | Type    | Default | Description                                                                                                   |
+| ------------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| lang          | String  | en      | The language of the months.                                                                                   |
+| months        | Array   | []      | Custom months if language is unsupported.                                                                     |
+| default-month | Integer |         | The default selected month of the month picker. To show the month picker unselected, use the no-default prop. |
+| default-year  | Integer |         | The default year of the month picker.                                                                         |
+| no-default    | Boolean | false   | Show the month picker unselected.                                                                             |
+| show-year     | Boolean | false   | Show the year picker.                                                                                         |
+| editable-year | Boolean | false   | Year appears as a input field.                                                                                |
+| clearable     | Boolean | false   | Possible to clear the chosen month.                                                                           |
+| variant       | String  | default | Color variant. Currently supports default and dark.                                                           |
+| year-only     | Boolean | false   | Hide the months so it acts as a pure year picker                                                              |
+| max-date      | Date    | null    | Set a max date. Higher dates will be disabled.                                                                |
+| min-date      | Date    | null    | Set a mih date. Higher dates will be disabled.                                                                |
 
 ### Events
 
-| Event                         | Returns         | Description                              |
-|-------------------------------|-----------------|------------------------------------------|
-| @change                      	| Object    			| Indicates that the value has been changed. NB, this will fire when a default value has been selected when the month picker is mounted. Use the input event if you want the value the user has selected.	             |
-| @change-year									| Number					| Indicates that the year has been changed. Will emit the year value. |
-| @input                        | Object	        | Indicates that the value has been changed by the user.|
-| @clear												|									| Indicates that user have cleared the selected value |
+| Event        | Returns | Description                                                                                                                                                                                             |
+| ------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| @change      | Object  | Indicates that the value has been changed. NB, this will fire when a default value has been selected when the month picker is mounted. Use the input event if you want the value the user has selected. |
+| @change-year | Number  | Indicates that the year has been changed. Will emit the year value.                                                                                                                                     |
+| @input       | Object  | Indicates that the value has been changed by the user.                                                                                                                                                  |
+| @clear       |         | Indicates that user have cleared the selected value                                                                                                                                                     |
 
 #### _Date object_
 
@@ -121,53 +129,53 @@ Change and input events returns a date object with the following properties:
 
 Available languages
 
-| Abbr	| Language			|
-|-------|---------------|
-| af		| Afrikaans 		|
-| ar		| Arabic 				|
-| cs		| Czech 				|
-| da		| Danish 				|
-| de    | German        |
-| el		| Greek					|
-| en		| English				|
-|	es		|	Spanish				|
-| et		| Estonian			|
-| fi		| Finnish				|
-| fr		| French				|
-| hi		| Hindi					|
-| hr		| Croatian			|
-|	hu		| Hungarian			|
-|	id		| Indonesian		|
-| is		| Icelandic			|
-| it		| Italian				|
-| ja		| Japanese			|
-| km		| Khmer					|
-| ko    | Korean 				|
-| ku		| Kurdish				|
-| lt		| Lithuanian		|
-| lv		| Latvian				|
-| ms		| Malay					|
-| ne		| Nepali				|
-| nl		| Dutch					|
-| no		|	Norwegian			|
-| pa		|	Panjabi				|
-|	pl		| Polish				|
-| pt		| Portuguese		|
-| ru		| Russian				|
-| sv		| Swedish				|
-|	sk		| Slovak				|
-| sl		|	Slovenian			|
-| so		| Somali				|
-| sr    | Serbian       |
-| sq		|	Albanian			|
-| th		| Thai					|
-| tr		| Turkish				|
-| uk		| Ukrainian			|
-| ur		| Urdu					|
-| vi		| Vietnamese		|
-|	yi		| Yiddish				|
-| zh		| Chinese				|
-| zu		| Zulu					|
+| Abbr | Language   |
+| ---- | ---------- |
+| af   | Afrikaans  |
+| ar   | Arabic     |
+| cs   | Czech      |
+| da   | Danish     |
+| de   | German     |
+| el   | Greek      |
+| en   | English    |
+| es   | Spanish    |
+| et   | Estonian   |
+| fi   | Finnish    |
+| fr   | French     |
+| hi   | Hindi      |
+| hr   | Croatian   |
+| hu   | Hungarian  |
+| id   | Indonesian |
+| is   | Icelandic  |
+| it   | Italian    |
+| ja   | Japanese   |
+| km   | Khmer      |
+| ko   | Korean     |
+| ku   | Kurdish    |
+| lt   | Lithuanian |
+| lv   | Latvian    |
+| ms   | Malay      |
+| ne   | Nepali     |
+| nl   | Dutch      |
+| no   | Norwegian  |
+| pa   | Panjabi    |
+| pl   | Polish     |
+| pt   | Portuguese |
+| ru   | Russian    |
+| sv   | Swedish    |
+| sk   | Slovak     |
+| sl   | Slovenian  |
+| so   | Somali     |
+| sr   | Serbian    |
+| sq   | Albanian   |
+| th   | Thai       |
+| tr   | Turkish    |
+| uk   | Ukrainian  |
+| ur   | Urdu       |
+| vi   | Vietnamese |
+| yi   | Yiddish    |
+| zh   | Chinese    |
+| zu   | Zulu       |
 
 **My language is unsupported**
 
@@ -190,4 +198,5 @@ poi
 ```
 
 ## License
+
 [The MIT License (MIT)](https://opensource.org/licenses/MIT)

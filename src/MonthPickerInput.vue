@@ -53,6 +53,9 @@ export default {
   components: {
 		MonthPicker
 	},
+  components: {
+    MonthPicker
+  },
   mixins: [monthPicker],
   emits: [
     'input'
@@ -62,9 +65,6 @@ export default {
       monthPickerVisible: false,
       selectedDate: null
     }
-  },
-  components: {
-    MonthPicker
   },
   mounted() {
     if (this.inputPreFilled && this.defaultMonth !== null && this.defaultYear !== null) {

@@ -11,8 +11,8 @@
       class="month-picker__year"
     >
       <button
-        @click="changeYear(-1)"
         type="button"
+        @click="changeYear(-1)"
       >
         &lsaquo;
       </button>
@@ -28,8 +28,8 @@
         @change="onChange()"
       >
       <button
-        @click="changeYear(+1)"
         type="button"
+        @click="changeYear(+1)"
       >
         &rsaquo;
       </button>

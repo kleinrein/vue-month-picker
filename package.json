@@ -14,7 +14,12 @@
     "year",
     "picker"
   ],
-  "author": "Andreas Rein",
+  "author": {
+    "name": "Andreas Rein",
+    "email": "rein@live.no",
+    "url": "https://www.andreasrein.net/"
+  },
+  "repository": "github:kleinrein:vue-month-picker",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^7.7.0",

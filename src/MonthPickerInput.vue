@@ -25,6 +25,7 @@
       :min-date="minDate"
       :year-only="yearOnly"
       @input="populateInput"
+      @change="$emit('change', $event)"
     />
   </div>
 </template>
@@ -58,6 +59,7 @@ export default {
   },
   mixins: [monthPicker],
   emits: [
+    'change',
     'input'
   ],
   data() {

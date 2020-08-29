@@ -148,6 +148,7 @@
         :min-date="minDate !== null ? new Date(minDate) : null"
         :year-only="isYearOnly"
         :no-default="true"
+        @change="showDate"
       />
     </div>
   </div>

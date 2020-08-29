@@ -139,6 +139,7 @@ export default {
 
       this.currentMonthIndex = index
       this.onChange()
+
       if (input) {
         this.$emit('input', this.date)
       }

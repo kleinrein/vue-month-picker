@@ -147,7 +147,9 @@
         :max-date="maxDate !== null ? new Date(maxDate) : null"
         :min-date="minDate !== null ? new Date(minDate) : null"
         :year-only="isYearOnly"
-        :no-default="true"
+        :default-month="8"
+        :default-year="2020"
+        :input-pre-filled="true"
         @change="showDate"
       />
     </div>

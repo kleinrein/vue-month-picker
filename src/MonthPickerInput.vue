@@ -70,7 +70,7 @@ export default {
   },
   mounted() {
     if (this.inputPreFilled && this.defaultMonth !== null && this.defaultYear !== null) {
-      this.selectedDate = `${this.monthsByLang[this.defaultMonth]}, ${this.defaultYear}`
+      this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${this.defaultYear}`
     }
   },
   methods: {

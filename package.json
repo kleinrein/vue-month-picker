@@ -1,6 +1,6 @@
 {
   "name": "vue-month-picker",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "main": "src/index.js",
   "description": "A simple and elegant month picker for Vue",
   "scripts": {

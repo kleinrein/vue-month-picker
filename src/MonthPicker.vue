@@ -39,15 +39,18 @@
       class="month-picker"
     >
       <div
-        v-for="(month, i) in monthsByLang"
-        :key="month"
+        v-for="(month, monthIndex) in monthsByLang"
+        :key="month" 
         :class="{
           'inactive': isInactive(month),
           'clearable': clearable,
-          'selected': currentMonth === month
+          'selected': !range && currentMonthIndex === monthIndex,
+          'selected-range': range && monthIndex > firstRangeMonthIndex && monthIndex < secondRangeMonthIndex,
+          'selected-range-first': range && firstRangeMonthIndex === monthIndex,
+          'selected-range-second': range && secondRangeMonthIndex === monthIndex,
         }"
         class="month-picker__month"
-        @click="selectMonth(i, true)"
+        @click="selectMonth(monthIndex, true)"
       >
         {{ month }}
       </div>
@@ -70,6 +73,8 @@ export default {
   ],
   data: () => ({
     currentMonthIndex: null,
+    firstRangeMonthIndex: null,
+    secondRangeMonthIndex: null,
     year: new Date().getFullYear()
   }),
   computed: {
@@ -80,18 +85,52 @@ export default {
 
       return null
     },
+    firstRangemonth: function () {
+      if (this.firstRangeMonthIndex !== null) {
+        return this.monthsByLang[this.firstRangeMonthIndex]
+      }
+
+      return null
+    },
+    secondRangemonth: function () {
+      if (this.secondRangeMonthIndex !== null) {
+        return this.monthsByLang[this.secondRangeMonthIndex]
+      }
+
+      return null
+    },
     date: function() {
       const month = this.monthsByLang.indexOf(this.currentMonth) + 1
-      const date = new Date(`${this.year}/${month}/01`)
-      const year = date.getFullYear()
+      let dateFrom = new Date(`${this.year}/${month}/01`)
+      let dateTo = new Date(this.year, month, 1)
 
-      return {
-        from: date,
-        to: new Date(year, month, 1),
+      const dateResult = {
+        from: dateFrom,
+        to: dateTo,
         month: this.monthsByLang[month - 1],
         monthIndex: month,
-        year: year
+        year: this.year,
+        rangeFrom: null,
+        rangeTo: null,
+        rangeFromMonth: null,
+        rangeToMonth: null
       }
+
+      if (this.range) {
+        const monthRangeFrom = this.monthsByLang.indexOf(this.firstRangeMonthIndex) + 1
+        const monthRangeTo = this.monthsByLang.indexOf(this.secondRangeMonthIndex) + 1
+
+        dateFrom = new Date(`${this.year}/${monthRangeFrom}/01`)
+        dateTo = new Date(`${this.year}/${monthRangeTo}/01`)
+        
+
+        dateResult.rangeFrom = this.firstRangeMonthIndex
+        dateResult.rangeTo = this.secondRangeMonthIndex
+        dateResult.rangeFromMonth = this.monthsByLang[this.firstRangeMonthIndex]
+        dateResult.rangeToMonth = this.monthsByLang[this.secondRangeMonthIndex]
+      }
+      
+      return dateResult
     }
   },
   watch: {
@@ -105,6 +144,11 @@ export default {
   mounted() {
     if (this.defaultYear) {
       this.year = this.defaultYear
+    }
+
+    if (this.range) {
+      this.setDefaultMonthRange()
+      return
     }
 
     if (this.defaultMonth) {
@@ -126,6 +170,10 @@ export default {
         return
       }
 
+      if (this.range) {
+        return this.selectMonthRange(index, input)
+      }
+
       const isAlreadySelected = this.currentMonthIndex === index
       if (this.clearable && isAlreadySelected) {
         this.currentMonthIndex = null
@@ -143,6 +191,43 @@ export default {
       if (input) {
         this.$emit('input', this.date)
       }
+    },
+    selectMonthRange(index, input) {
+      if (this.firstRangeMonthIndex === null) {
+        this.firstRangeMonthIndex = index
+        return
+      }
+
+      if (this.firstRangeMonthIndex !== null && this.secondRangeMonthIndex !== null) {
+        this.firstRangeMonthIndex = index
+        this.secondRangeMonthIndex = null
+        return
+      }
+
+      if (index >= this.firstRangeMonthIndex) {
+        this.secondRangeMonthIndex = index
+        this.onChange()
+        
+        if (input) {
+          this.$emit('input', this.date)
+        }
+        return
+      }
+
+      this.firstRangeMonthIndex = index
+    },
+    setDefaultMonthRange () {
+      if (this.defaultMonthRange === null || this.defaultMonthRange.length !== 2) {
+        return
+      }
+
+      const [firstRange, secondRange] = this.defaultMonthRange
+      if (secondRange <= firstRange) {
+        return
+      }
+
+      this.firstRangeMonthIndex = firstRange
+      this.secondRangeMonthIndex = secondRange
     },
     changeYear(value) {
       this.year += value
@@ -210,7 +295,8 @@ export default {
   width: 100%;
   font-weight: 600;
   letter-spacing: 1px;
-  font-size: 1.2em;
+  font-size: 1.2rem;
+  margin: 1rem 0;
 }
 
 .month-picker__year input {
@@ -219,12 +305,12 @@ export default {
   border-radius: 5px 5px 0 0;
   outline: none;
   border: none;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   width: auto;
   text-align: center;
   box-sizing: border-box;
   width: 100%;
-  height: 3em;
+  height: 3rem;
   position: relative;
   z-index: 1;
 }
@@ -243,12 +329,12 @@ export default {
 .month-picker__year button {
   background-color: #FFFFFF;
   position: absolute;
-  width: 2em;
-  font-size: 1.5em;
+  width: 4rem;
+  font-size: 1.75rem;
   border-radius: 5px;
   outline: none;
   border: 0;
-  top: 0.5em;
+  top: 0.5rem;
   border: 1px solid #E8E8E8;
   z-index: 2;
   color: #686868;
@@ -272,12 +358,13 @@ export default {
 
 .month-picker__month {
   flex-basis: calc(33.333% - 10px);
-  padding: 0.75em 0.25em;
+  padding: 0.75rem 0.25rem;
   cursor: pointer;
   text-align: center;
   border: 1px solid rgba(245, 245, 245, .75);
   transition: all 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
   background-color: #FEFEFE;
+  user-select: none;
 }
 
 .month-picker .month-picker__month:hover {
@@ -285,12 +372,25 @@ export default {
   z-index: 10;
 }
 
-.month-picker__month.selected {
+.month-picker__month.selected,
+.month-picker__month.selected-range-first,
+.month-picker__month.selected-range-second {
   background-color: #55B0F2;
   color: #FFFFFF;
   border-radius: 5px;
   box-shadow: inset 0 0 3px #3490d2, 0px 2px 5px rgba(85, 176, 242, 0.2);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.month-picker__month.selected-range-first,
+.month-picker__month.selected-range-second {
+  border-color: transparent;
+}
+
+.month-picker__month.selected-range {
+  background-color: #7eb9e2;
+  color: #FFFFFF;
+  border-color: transparent;
 }
 
 .month-picker__month.inactive {
@@ -305,7 +405,7 @@ export default {
   box-shadow: none;
 }
 
-/* Dark theme */
+/* Dark threme */
 .month-picker--dark {
   background-color: #5F5F5F;
 }
@@ -339,11 +439,19 @@ export default {
   color: #C9C9C9;
 }
 
-.month-picker--dark .month-picker__month.selected {
+.month-picker--dark .month-picker__month.selected,
+.month-picker--dark .month-picker__month.selected-range-first,
+.month-picker--dark .month-picker__month.selected-range-second {
   background-color: #505050;
   box-shadow: inset 0 0 3px #505050, 0px 2px 5px #505050;
   color: #FFFFFF;
-  border-color: #1E1E1E;
+  border-color: #1d1b1b;
+}
+
+.month-picker--dark .month-picker__month.selected-range {
+  background-color: #636363;
+  color: #FFFFFF;
+  border-color: transparent;
 }
 
 .month-picker--dark .month-picker__month:hover {

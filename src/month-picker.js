@@ -67,6 +67,28 @@ export default {
       default: false,
       required: false
     },
+    range: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    defaultMonthRange: {
+      type: Array,
+      default: null,
+      required: false,
+      validator: function (value) {
+        if (value === null || value.length !== 2) {
+          return false
+        }
+
+        const [firstRange, secondRange] = value
+        if (secondRange <= firstRange) {
+          return false
+        }
+
+        return true
+      }
+    },
     variant: {
       type: String,
       default: 'default',

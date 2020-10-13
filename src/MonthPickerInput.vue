@@ -24,6 +24,7 @@
       :max-date="maxDate"
       :min-date="minDate"
       :year-only="yearOnly"
+      :range="range"
       @input="populateInput"
       @change="$emit('change', $event)"
     />
@@ -69,13 +70,18 @@ export default {
     }
   },
   mounted() {
-    if (this.inputPreFilled && this.defaultMonth !== null && this.defaultYear !== null) {
+    if (this.inputPreFilled && this.defaultMonth !== null && this.defaultYear !== null && !this.range) {
       this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${this.defaultYear}`
     }
   },
   methods: {
     populateInput(date) {
-      this.selectedDate = `${date.month}, ${date.year}`
+      if (this.range) {
+        this.selectedDate = `${date.rangeFromMonth} - ${date.rangeToMonth}, ${date.year}`
+      } else {
+        this.selectedDate = `${date.month}, ${date.year}`
+      }
+
       this.monthPickerVisible = false
       this.$emit("input", date)
     },

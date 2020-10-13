@@ -68,6 +68,14 @@
       </label>
 
       <label class="form__label">
+        <input
+          v-model="isRange"
+          type="checkbox"
+        >
+        range
+      </label>
+
+      <label class="form__label">
         max date
         <input
           v-model="maxDate"
@@ -113,7 +121,9 @@
 
       <h3>Inline</h3>
       <strong>@change: string date</strong>
-      <p>{{ date }}</p>
+      <p>
+        <pre>{{ date }}</pre>
+      </p>
       <strong>
         @clear
         <em>{{ clearEmittedText }}</em>
@@ -130,6 +140,8 @@
         :max-date="maxDate !== null ? new Date(maxDate) : null"
         :min-date="minDate !== null ? new Date(minDate) : null"
         :year-only="isYearOnly"
+        :range="isRange"
+        :default-month-range="[2, 4]"
         @change="showDate"
         @change-year="(v) => year = v"
         @clear="showClearText"
@@ -150,6 +162,7 @@
         :default-month="8"
         :default-year="2020"
         :input-pre-filled="true"
+        :range="isRange"
         @change="showDate"
       />
     </div>
@@ -176,6 +189,7 @@ export default {
       isClearable: false,
       isEditableYear: false,
       isYearOnly: false,
+      isRange: false,
       showYear: true,
       maxDate: null,
       minDate: null,
@@ -241,6 +255,13 @@ body {
 
 .form__label select {
   padding: 0 2rem;
+}
+
+pre {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #313131;
 }
 
 @keyframes octocat-wave {

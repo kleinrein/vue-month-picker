@@ -138,7 +138,9 @@ export default {
 .month-picker__container {
   width: 400px;
   position: relative;
-  border: 1px solid #DDDDDD;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
@@ -153,6 +155,16 @@ export default {
   font-family: sans-serif;
   border-radius: 5px;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.month-picker__year {
+  padding: 0.05rem;
+  background-color: #FCFCFC;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .month-picker__year p {
@@ -190,14 +202,15 @@ export default {
 }
 
 .month-picker__year button {
-  background-color: #FFFFFF;
+  background-color: #F4F4F4;
   position: absolute;
-  width: 2em;
-  font-size: 1.5em;
+  width: 5rem;
+  height: 3rem;
+  font-size: 2rem;
   border-radius: 5px;
   outline: none;
   border: 0;
-  top: 10px;
+  top: 0.25rem;
   border: 1px solid #E8E8E8;
   z-index: 2;
   color: #686868;
@@ -220,13 +233,27 @@ export default {
 }
 
 .month-picker__month {
-  flex-basis: calc(33.333% - 10px);
-  padding: 0.75em 0.25em;
+  padding: 0.85rem 0.25rem;
   cursor: pointer;
   text-align: center;
   border: 1px solid rgba(245, 245, 245, .75);
   transition: all 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
   background-color: #FEFEFE;
+  user-select: none;
+  position: relative;
+}
+
+.month-picker__month:hover::after {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .month-picker__month.selected {

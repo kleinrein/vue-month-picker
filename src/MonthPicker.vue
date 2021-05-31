@@ -121,6 +121,7 @@ export default {
 
       this.currentMonthIndex = index
       this.onChange()
+
       if (input) {
         this.$emit('input', this.date)
       }
@@ -210,7 +211,7 @@ export default {
   border-radius: 5px;
   outline: none;
   border: 0;
-  top: 0.25rem;
+  top: 0.5rem;
   border: 1px solid #E8E8E8;
   z-index: 2;
   color: #686868;
@@ -272,6 +273,10 @@ export default {
 /* Dark theme */
 .month-picker--dark {
   background-color: #5F5F5F;
+}
+
+.month-picker--dark .month-picker__year {
+  background-color: #2F2F30;
 }
 
 .month-picker--dark .month-picker__year p,

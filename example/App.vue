@@ -190,21 +190,28 @@
 </template>
 
 <script>
+import languages from "@/languages"
+
 import MonthPicker from '@/MonthPicker.vue'
 import MonthPickerInput from '@/MonthPickerInput.vue'
 
 export default {
 	data() {
 		return {
-			year: 0,
-			clearEmittedText: null,
-			isMonthPickerVisible: false,
-			isClearable: true,
-			isEditableYear: false,
+      clearEmittedText: null,
 			showYear: true,
-			selectedDate: null,
+      isYearOnly: false,
+      isRange: false,
+			isMonthPickerVisible: false,
+			isClearable: false,
+			isEditableYear: false,
+      maxDate: null,
+      minDate: null,
 			variants: ['default', 'dark'],
 			selectedVariant: 'default',
+			selectedDate: null,
+      selectedLang: 'en',
+			year: 0,
 			date: {
 				from: null,
 				to: null,
@@ -217,6 +224,11 @@ export default {
 		MonthPicker,
 		MonthPickerInput
 	},
+  computed: {
+    languages: function () {
+      return languages
+    }
+  },
 	methods: {
 		showClearText () {
 			this.clearEmittedText = 'emitted'

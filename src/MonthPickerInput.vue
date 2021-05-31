@@ -8,7 +8,7 @@
       type="text"
       v-model="selectedDate"
       @click="showMonthPicker()"
-      readonly
+      :placeholder="placeholder"
     >
     <month-picker
       v-show="monthPickerVisible"
@@ -28,13 +28,18 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import MonthPicker from './MonthPicker.vue'
 import monthPicker from './month-picker'
 
 export default {
   name: 'en',
   mixins: [monthPicker],
+  props: {
+    placeholder: {
+      type: String,
+      default: null
+    }
+  },
   directives: {
     clickOutside: {
       bind: function (el, binding, vnode) {
@@ -61,6 +66,7 @@ export default {
 	},
   methods: {
     populateInput (date) {
+      console.log(date)
 			this.selectedDate = `${date.month}, ${date.year}`
 			this.monthPickerVisible = false
       this.$emit("input", date)

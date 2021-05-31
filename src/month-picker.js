@@ -38,6 +38,11 @@ export default {
       default: false,
       required: false
     },
+    yearOnly: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
     noDefault: {
       type: Boolean,
       default: false,
@@ -48,6 +53,42 @@ export default {
       default: false,
       required: false
     },
+    minDate: {
+      type: Date,
+      default: null,
+      required: false
+    },
+    maxDate: {
+      type: Date,
+      default: null
+    },
+    inputPreFilled: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    range: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    defaultMonthRange: {
+      type: Array,
+      default: null,
+      required: false,
+      validator: function (value) {
+        if (value === null || value.length !== 2) {
+          return false
+        }
+
+        const [firstRange, secondRange] = value
+        if (secondRange <= firstRange) {
+          return false
+        }
+
+        return true
+      }
+    },
     variant: {
       type: String,
       default: 'default',
@@ -55,6 +96,15 @@ export default {
       validator: function (value) {
         return ['default', 'dark'].includes(value)
       }
+    }
+  },
+  computed: {
+    monthsByLang: function() {
+      if (this.months !== null &&
+        this.months.length === 12) {
+        return this.months
+      }
+      return languages[this.lang]
     }
   }
 }

@@ -190,62 +190,62 @@
 </template>
 
 <script>
-import languages from "@/languages"
+import languages from "@/languages";
 
-import MonthPicker from '@/MonthPicker.vue'
-import MonthPickerInput from '@/MonthPickerInput.vue'
+import MonthPicker from "@/MonthPicker.vue";
+import MonthPickerInput from "@/MonthPickerInput.vue";
 
 export default {
-	data() {
-		return {
+  data() {
+    return {
       clearEmittedText: null,
-			showYear: true,
+      showYear: true,
       isYearOnly: false,
       isRange: false,
-			isMonthPickerVisible: false,
-			isClearable: false,
-			isEditableYear: false,
+      isMonthPickerVisible: false,
+      isClearable: false,
+      isEditableYear: false,
       maxDate: null,
       minDate: null,
-			variants: ['default', 'dark'],
-			selectedVariant: 'default',
-			selectedDate: null,
-      selectedLang: 'en',
-			year: 0,
-			date: {
-				from: null,
-				to: null,
-				month: null,
-				year: null
-			}
-		}
-	},
-	components: {
-		MonthPicker,
-		MonthPickerInput
-	},
+      variants: ["default", "dark"],
+      selectedVariant: "default",
+      selectedDate: null,
+      selectedLang: "en",
+      year: 0,
+      date: {
+        from: null,
+        to: null,
+        month: null,
+        year: null
+      }
+    };
+  },
+  components: {
+    MonthPicker,
+    MonthPickerInput
+  },
   computed: {
-    languages: function () {
-      return languages
+    languages: function() {
+      return languages;
     }
   },
-	methods: {
-		showClearText () {
-			this.clearEmittedText = 'emitted'
-			window.setTimeout(() => {
-				this.clearEmittedText = null
-			}, 1000)
-		},
-		showDate (date) {
-			this.date = date
-		}
-	}
-}
+  methods: {
+    showClearText() {
+      this.clearEmittedText = "emitted";
+      window.setTimeout(() => {
+        this.clearEmittedText = null;
+      }, 1000);
+    },
+    showDate(date) {
+      this.date = date;
+    }
+  }
+};
 </script>
 
 <style>
 :root {
-  background-color: #EFEFEF;
+  background-color: #efefef;
 }
 </style>
 

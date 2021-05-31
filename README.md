@@ -27,8 +27,8 @@ yarn add --save vue-month-picker
 
 ```js
 import Vue from 'vue'
-import MonthPicker from 'vue-month-picker'
-import MonthPickerInput from 'vue-month-picker'
+import { MonthPicker } from 'vue-month-picker'
+import { MonthPickerInput } from 'vue-month-picker'
 
 Vue.use(MonthPicker)
 Vue.use(MonthPickerInput)
@@ -37,13 +37,15 @@ Vue.use(MonthPickerInput)
 ### Examples
 
 **Input**
+
 ```vue
+
 <template>
   <month-picker-input :no-default="true"></month-picker-input>
 </template>
 
 <script>
-import MonthPickerInput from 'vue-month-picker'
+import { MonthPickerInput } from 'vue-month-picker'
 
 export default {
 	components: {
@@ -54,14 +56,16 @@ export default {
 ```
 
 **Inline**
+
 ```vue
+
 <template>
 	<p>{{ date.month }}</p>
   <month-picker @change="showDate"></month-picker>
 </template>
 
 <script>
-import MonthPicker from 'vue-month-picker'
+import { MonthPicker } from 'vue-month-picker'
 
 export default {
 	data() {
@@ -90,27 +94,23 @@ export default {
 
 _The MonthPicker and the MonthPickerInput shares the same props and events._
 
-### Props 
+### Props
 
-#### MonthPicker & MonthPickerInput
-
-| Prop          | Type    | Default | Description                                                                                                   |
-| ------------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------- |
-| lang          | String  | en      | The language of the months.                                                                                   |
-| months        | Array   | []      | Custom months if language is unsupported.                                                                     |
-| default-month | Integer |         | The default selected month of the month picker. To show the month picker unselected, use the no-default prop. |
-| default-year  | Integer |         | The default year of the month picker.                                                                         |
-| no-default    | Boolean | false   | Show the month picker unselected.                                                                             |
-| show-year     | Boolean | false   | Show the year picker.                                                                                         |
-| editable-year | Boolean | false   | Year appears as a input field.                                                                                |
-| clearable     | Boolean | false   | Possible to clear the chosen month.                                                                           |
-| variant       | String  | default | Color variant. Currently supports default and dark.                                                           |
-
-#### MonthPickerInput
-
-| Prop        | Type   | Default | Description                            |
-| ----------- | ------ | ------- | -------------------------------------- |
-| placeholder | String | null    | Placeholder of the input field |
+| Prop             | Type    | Default | Description                                                                                                   |
+| ---------------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| lang             | String  | en      | The language of the months.                                                                                   |
+| months           | Array   | []      | Custom months if language is unsupported.                                                                     |
+| default-month    | Integer |         | The default selected month of the month picker. To show the month picker unselected, use the no-default prop. |
+| default-year     | Integer |         | The default year of the month picker.                                                                         |
+| no-default       | Boolean | false   | Show the month picker unselected.                                                                             |
+| show-year        | Boolean | false   | Show the year picker.                                                                                         |
+| editable-year    | Boolean | false   | Year appears as a input field.                                                                                |
+| clearable        | Boolean | false   | Possible to clear the chosen month.                                                                           |
+| variant          | String  | default | Color variant. Currently supports default and dark.                                                           |
+| year-only        | Boolean | false   | Hide the months so it acts as a pure year picker                                                              |
+| max-date         | Date    | null    | Set a max date. Higher dates will be disabled.                                                                |
+| min-date         | Date    | null    | Set a mih date. Higher dates will be disabled.                                                                |
+| input-pre-filled | Boolean | false   | Only applies for `<month-picker-input>`. Input will be pre filled if default-year and default-month is set.   |
 
 ### Events
 
@@ -130,6 +130,10 @@ Change and input events returns a date object with the following properties:
 - ```month```: Selected month.
 - ```monthIndex```: Selected month index.
 - ```year```: Selected year.
+- ```rangeFrom```: Selected month index range from.
+- ```rangeTo```: Selected month index range to.
+- ```rangeFromMonth```: Selected month from.
+- ```rangeToMonth```: Selected to month.
 
 ## Translations
 
@@ -192,8 +196,8 @@ You could add it in the languages.js file and create a pull request. You could a
 1. Fork it!
 2. Create your feature branch: git checkout -b my-new-feature
 3. Commit your changes: git commit -am 'Add some feature'
-3. Push to the branch: git push origin my-new-feature
-4. Submit a pull request
+4. Push to the branch: git push origin my-new-feature
+5. Submit a pull request
 
 ## Development
 
@@ -204,4 +208,5 @@ poi
 ```
 
 ## License
+
 [The MIT License (MIT)](https://opensource.org/licenses/MIT)

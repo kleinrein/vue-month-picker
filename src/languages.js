@@ -38,7 +38,7 @@ export default {
   sr: ['Januar', "Februar", "Mart", "April", "Maj", 'Jun', "Jul", "Avgust", "Septembar", "Oktobar", "Novembar", "Decembar"],
   so: ['Janaayo', 'Febraayo', 'Maarso', 'Abriil', 'Laga yaabaa', 'Juun', 'July', 'Agoosto', 'Sebtembar', 'Oktoobar', 'November', 'December'],
   sq: ['Janar', 'Shkurt', 'Marsh', 'Prill', 'Mund', 'Qershor', 'Korrik', 'Gusht', 'Shtator', 'Tetor', 'Nëntor', 'Dhjetor'],
-  th: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'อาจ', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+  th: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
   tr: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs ayı', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
   uk: ["Січень", "Лютий", "Березень", "Квітень", 'Може', "Червень", "Липень", "Серпень", 'Вересень', "Жовтень", 'Листопад', 'Грудень'],
   ur: ['جنوری', 'فروری', 'مارچ', 'اپریل', 'مئی', 'جون', 'جولائی', 'اگست', 'ستمبر', 'اکتوبر', 'نومبر', 'دسمبر'],

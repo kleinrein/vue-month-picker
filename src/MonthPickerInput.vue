@@ -1,13 +1,16 @@
 <template>
-  <div v-click-outside="hide" class="month-picker-input-container">
+  <div
+    v-click-outside="hide"
+    class="month-picker-input-container"
+  >
     <input
       v-model="selectedDate"
       class="month-picker-input"
       type="text"
-      @click="showMonthPicker()"
       :placeholder="placeholder"
       readonly
-    />
+      @click="showMonthPicker()"
+    >
     <month-picker
       v-show="monthPickerVisible"
       :default-year="defaultYear"
@@ -24,7 +27,7 @@
       :year-only="yearOnly"
       :range="range"
       @input="populateInput"
-      @change="$emit('change', $event)"
+      @change="updateDate"
     />
   </div>
 </template>
@@ -34,6 +37,7 @@ import MonthPicker from "./MonthPicker.vue";
 import monthPicker from "./month-picker";
 
 export default {
+  name: "MonthPickerInput",
   directives: {
     clickOutside: {
       bind: function(el, binding, vnode) {
@@ -49,6 +53,13 @@ export default {
       }
     }
   },
+  components: {
+    MonthPicker
+  },
+  components: {
+    MonthPicker
+  },
+  mixins: [monthPicker],
   mixins: [monthPicker],
   props: {
     placeholder: {
@@ -56,14 +67,6 @@ export default {
       default: null
     }
   },
-  name: "MonthPickerInput",
-  components: {
-    MonthPicker
-  },
-  components: {
-    MonthPicker
-  },
-  mixins: [monthPicker],
   emits: ["change", "input"],
   data() {
     return {
@@ -99,6 +102,14 @@ export default {
     },
     hide() {
       this.monthPickerVisible = false;
+    },
+    updateDate(date){
+      if (this.range) {
+        this.selectedDate = `${date.rangeFromMonth} - ${date.rangeToMonth}, ${date.year}`;
+      } else {
+        this.selectedDate = `${date.month}, ${date.year}`;
+      }
+      this.$emit('change', date)
     }
   }
 };

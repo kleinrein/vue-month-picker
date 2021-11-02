@@ -5,7 +5,7 @@
 
 A lightweight month picker for Vue.js with no dependencies.
 
-<img src="https://i.imgur.com/JZHRo3g.png" width="350">
+![VueMonthPicker](picture.PNG)
 
 ## Install
 

@@ -196,6 +196,10 @@ import MonthPicker from "@/MonthPicker.vue";
 import MonthPickerInput from "@/MonthPickerInput.vue";
 
 export default {
+  components: {
+    MonthPicker,
+    MonthPickerInput
+  },
   data() {
     return {
       clearEmittedText: null,
@@ -219,10 +223,6 @@ export default {
         year: null
       }
     };
-  },
-  components: {
-    MonthPicker,
-    MonthPickerInput
   },
   computed: {
     languages: function() {

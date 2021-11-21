@@ -12,15 +12,15 @@
         fill="#151513"
         style="position: absolute; top: 0; left: 0"
       >
-        <path
-          fill="#000"
-          d="M250 0L135 115h-15l-12 27L0 250V0z"
-        />
+        <path fill="#000" d="M250 0L135 115h-15l-12 27L0 250V0z" />
         <path
           fill="#fff"
           class="octo-arm"
           d="M122 109c15-9 9-19 9-19-3-7-2-11-2-11 1-7-3-2-3-2-4 5-2 11-2 11 3 10-5 15-9 16"
-          style="-webkit-transform-origin: 120px 144px; transform-origin: 120px 144px"
+          style="
+            -webkit-transform-origin: 120px 144px;
+            transform-origin: 120px 144px;
+          "
         />
         <path
           fill="#fff"
@@ -34,89 +34,56 @@
       <h1>vue-month-picker</h1>
 
       <h2>Parameters</h2>
-      
+
       <div class="form__container">
-        <label
-          class="form__label"
-        >
+        <label class="form__label">
           show-year
-          <input
-            v-model="showYear"
-            class="form__input"
-            type="checkbox"
-          >
+          <input v-model="showYear" class="form__input" type="checkbox" />
         </label>
 
         <label class="form__label">
           clearable
-          <input
-            v-model="isClearable"
-            class="form__input"
-            type="checkbox"
-          >
+          <input v-model="isClearable" class="form__input" type="checkbox" />
         </label>
 
         <label class="form__label">
           editable-year
-          <input
-            v-model="isEditableYear"
-            class="form__input"
-            type="checkbox"
-          >
+          <input v-model="isEditableYear" class="form__input" type="checkbox" />
         </label>
 
         <label class="form__label">
           year-only
-          <input
-            v-model="isYearOnly"
-            class="form__input"
-            type="checkbox"
-          >
+          <input v-model="isYearOnly" class="form__input" type="checkbox" />
         </label>
 
         <label class="form__label">
           range
-          <input
-            v-model="isRange"
-            class="form__input"
-            type="checkbox"
-          >
+          <input v-model="isRange" class="form__input" type="checkbox" />
         </label>
 
         <label class="form__label">
           max date
-          <input
-            v-model="maxDate"
-            class="form__input"
-            type="date"
-          >
+          <input v-model="maxDate" class="form__input" type="date" />
         </label>
 
         <label class="form__label">
           min date
-          <input
-            v-model="minDate"
-            class="form__input"
-            type="date"
-          >
+          <input v-model="minDate" class="form__input" type="date" />
         </label>
 
-        <br>
+        <br />
 
         <label class="form__label">
           variant
           <div>
-            <div
-              v-for="variant in variants"
-              :key="`variant-${variant}`"
-            >
+            <div v-for="variant in variants" :key="`variant-${variant}`">
               <input
                 :id="variant"
                 v-model="selectedVariant"
                 type="radio"
                 name="variant"
                 :value="variant"
-              >
+              />
               <label :for="variant">{{ variant }}</label>
             </div>
           </div>
@@ -124,10 +91,7 @@
 
         <label class="form__label">
           lang
-          <select
-            v-model="selectedLang"
-            class="form__input"
-          >
+          <select v-model="selectedLang" class="form__input">
             <option
               v-for="(lang, langKey) in languages"
               :key="`language-${langKey}`"
@@ -141,16 +105,16 @@
 
       <h3>Inline</h3>
       <strong>@change: string date</strong>
-      <p>
+      <div>
         <pre>{{ date }}</pre>
-      </p>
+      </div>
       <strong>
         @clear
         <em>{{ clearEmittedText }}</em>
       </strong>
 
-      <br>
-      <br>
+      <br />
+      <br />
       <month-picker
         :lang="selectedLang"
         :clearable="isClearable"
@@ -163,11 +127,11 @@
         :range="isRange"
         :default-month-range="[2, 4]"
         @change="showDate"
-        @change-year="(v) => year = v"
+        @change-year="(v) => (year = v)"
         @clear="showClearText"
       />
-      <br>
-      <br>
+      <br />
+      <br />
 
       <h3>Input</h3>
       <month-picker-input
@@ -198,7 +162,7 @@ import MonthPickerInput from "@/MonthPickerInput.vue";
 export default {
   components: {
     MonthPicker,
-    MonthPickerInput
+    MonthPickerInput,
   },
   data() {
     return {
@@ -220,14 +184,14 @@ export default {
         from: null,
         to: null,
         month: null,
-        year: null
-      }
+        year: null,
+      },
     };
   },
   computed: {
-    languages: function() {
+    languages: function () {
       return languages;
-    }
+    },
   },
   methods: {
     showClearText() {
@@ -238,8 +202,8 @@ export default {
     },
     showDate(date) {
       this.date = date;
-    }
-  }
+    },
+  },
 };
 </script>
 

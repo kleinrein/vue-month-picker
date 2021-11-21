@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-click-outside="hide"
-    class="month-picker-input-container"
-  >
+  <div v-click-outside="hide" class="month-picker-input-container">
     <input
       v-model="selectedDate"
       class="month-picker-input"
@@ -10,7 +7,7 @@
       :placeholder="placeholder"
       readonly
       @click="showMonthPicker()"
-    >
+    />
     <month-picker
       v-show="monthPickerVisible"
       :default-year="defaultYear"
@@ -40,51 +37,70 @@ export default {
   name: "MonthPickerInput",
   directives: {
     clickOutside: {
-      bind: function(el, binding, vnode) {
-        el.event = function(event) {
+      bind: function (el, binding, vnode) {
+        el.event = function (event) {
           if (!(el === event.target || el.contains(event.target))) {
             vnode.context[binding.expression](event);
           }
         };
         document.body.addEventListener("click", el.event);
       },
-      unbind: function(el) {
+      unbind: function (el) {
         document.body.removeEventListener("click", el.event);
-      }
-    }
+      },
+      beforeMount: (el, binding) => {
+        el.clickOutsideEvent = (event) => {
+          if (!(el == event.target || el.contains(event.target))) {
+            binding.value();
+          }
+        };
+        document.addEventListener("click", el.clickOutsideEvent);
+      },
+      unmounted: (el) => {
+        document.removeEventListener("click", el.clickOutsideEvent);
+      },
+    },
   },
   components: {
-    MonthPicker
+    MonthPicker,
   },
   components: {
-    MonthPicker
+    MonthPicker,
   },
   mixins: [monthPicker],
   mixins: [monthPicker],
   props: {
     placeholder: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   emits: ["change", "input"],
   data() {
     return {
       monthPickerVisible: false,
-      selectedDate: null
+      selectedDate: null,
     };
   },
-  mounted() {
-    if (
-      this.inputPreFilled &&
-      this.defaultMonth !== null &&
-      this.defaultYear !== null &&
-      !this.range
-    ) {
-      this.selectedDate = `${this.monthsByLang[this.defaultMonth - 1]}, ${
-        this.defaultYear
-      }`;
-    }
+  watch: {
+    defaultYear: {
+      immediate: true,
+      handler(value) {
+        if (!value || !this.inputPreFilled) return;
+        this.selectedDate = `${
+          this.monthsByLang[this.defaultMonth - 1]
+        }, ${value}`;
+      },
+    },
+    defaultMonth: {
+      immediate: true,
+      handler(value) {
+        if (!value || !this.inputPreFilled) return;
+        this.selectedDate = `${this.monthsByLang[value - 1]}, ${
+          this.defaultYear
+        }`;
+      },
+    },
   },
   methods: {
     populateInput(date) {
@@ -103,15 +119,15 @@ export default {
     hide() {
       this.monthPickerVisible = false;
     },
-    updateDate(date){
+    updateDate(date) {
       if (this.range) {
         this.selectedDate = `${date.rangeFromMonth} - ${date.rangeToMonth}, ${date.year}`;
       } else {
         this.selectedDate = `${date.month}, ${date.year}`;
       }
-      this.$emit('change', date)
-    }
-  }
+      this.$emit("change", date);
+    },
+  },
 };
 </script>
 <style scoped>

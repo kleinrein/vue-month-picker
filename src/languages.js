@@ -1,3 +1,4 @@
+// prettier-ignore
 export default {
   af: ['Januarie', 'Februarie', 'Maart', 'April', 'Mei', 'Junie', 'Julie', 'Augustus', 'September', 'Oktober', 'November', 'Desember'],
   ar: ['كانون الثاني', 'شهر فبراير', 'مارس', 'أبريل', 'قد', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'شهر اكتوبر', 'شهر نوفمبر', 'ديسمبر'],

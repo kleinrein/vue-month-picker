@@ -97,6 +97,11 @@ export default {
         return ["default", "dark"].includes(value);
       },
     },
+    dateFormat: {
+      type: String,
+      default: "%n, %Y",
+      required: false,
+    },
   },
   computed: {
     monthsByLang: function () {

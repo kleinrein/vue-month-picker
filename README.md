@@ -109,9 +109,10 @@ _The MonthPicker and the MonthPickerInput shares the same props and events._
 | variant          | String  | default  | Color variant. Currently supports default and dark.                                                           |
 | year-only        | Boolean | false    | Hide the months so it acts as a pure year picker                                                              |
 | max-date         | Date    | null     | Set a max date. Higher dates will be disabled.                                                                |
-| min-date         | Date    | null     | Set a min date. Higher dates will be disabled.                                                                |
+| min-date         | Date    | null     | Set a min date. Lower dates will be disabled.                                                                |
 | date-format      | String  | "%n, %Y" | Set a display format for non-ranged dates.                                                                |
 | input-pre-filled | Boolean | false    | Only applies for `<month-picker-input>`. Input will be pre filled if default-year and default-month is set.   |
+
 
 ### Events
 

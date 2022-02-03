@@ -21,7 +21,14 @@
         :class="{
           inactive: isInactive(month),
           clearable: clearable,
-          selected: !range && currentMonthIndex === monthIndex,
+          selected:
+            (highlightExactDate &&
+              !range &&
+              showYear &&
+              currentMonthIndex === monthIndex &&
+              year === selectedYear) ||
+            (!range && !showYear && currentMonthIndex == monthIndex) ||
+            (!highlightExactDate && !range && currentMonthIndex === monthIndex),
           'selected-range':
             range &&
             monthIndex > firstRangeMonthIndex &&
@@ -52,6 +59,7 @@ export default {
     firstRangeMonthIndex: null,
     secondRangeMonthIndex: null,
     year: new Date().getFullYear(),
+    selectedYear: new Date().getFullYear(),
   }),
   computed: {
     currentMonth: function () {
@@ -86,6 +94,7 @@ export default {
         month: this.monthsByLang[month - 1],
         monthIndex: month,
         year: this.year,
+        selectedYear: this.selectedYear,
         rangeFrom: null,
         rangeTo: null,
         rangeFromMonth: null,
@@ -117,11 +126,13 @@ export default {
     },
     defaultYear(newVal) {
       this.year = newVal;
+      this.selectedYear = newVal;
     },
   },
   mounted() {
     if (this.defaultYear) {
       this.year = this.defaultYear;
+      this.selectedYear = this.defaultYear;
     }
 
     if (this.range) {
@@ -163,6 +174,7 @@ export default {
       }
 
       this.currentMonthIndex = index;
+      this.selectedYear = this.year;
       this.onChange();
 
       if (input) {
@@ -214,6 +226,7 @@ export default {
     },
     changeYear(value) {
       this.year += value;
+
       if (this.isInactive(0)) {
         return;
       }

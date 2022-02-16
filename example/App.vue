@@ -42,6 +42,15 @@
         </label>
 
         <label class="form__label">
+          highlight-exact-date
+          <input
+            v-model="highlightExactDate"
+            class="form__input"
+            type="checkbox"
+          />
+        </label>
+
+        <label class="form__label">
           clearable
           <input v-model="isClearable" class="form__input" type="checkbox" />
         </label>
@@ -121,6 +130,7 @@
         :editable-year="isEditableYear"
         :variant="selectedVariant"
         :show-year="showYear"
+        :highlight-exact-date="highlightExactDate"
         :max-date="maxDate !== null ? new Date(maxDate) : null"
         :min-date="minDate !== null ? new Date(minDate) : null"
         :year-only="isYearOnly"
@@ -140,6 +150,7 @@
         :editable-year="isEditableYear"
         :variant="selectedVariant"
         :show-year="showYear"
+        :highlight-exact-date="highlightExactDate"
         :max-date="maxDate !== null ? new Date(maxDate) : null"
         :min-date="minDate !== null ? new Date(minDate) : null"
         :year-only="isYearOnly"
@@ -179,6 +190,7 @@ export default {
       selectedVariant: "default",
       selectedDate: null,
       selectedLang: "en",
+      highlightExactDate: false,
       year: 0,
       date: {
         from: null,

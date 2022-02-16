@@ -97,6 +97,11 @@ export default {
         return ["default", "dark"].includes(value);
       },
     },
+    highlightExactDate: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
   computed: {
     monthsByLang: function () {

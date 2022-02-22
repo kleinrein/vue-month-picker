@@ -1,12 +1,12 @@
-import languages from "./languages";
+import languages from './languages'
 
 export default {
   props: {
     lang: {
       type: String,
-      default: "en",
+      default: 'en',
       validator: function (value) {
-        return Object.keys(languages).some((l) => Object.is(l, value));
+        return Object.keys(languages).some(l => Object.is(l, value))
       },
       required: false,
     },
@@ -14,7 +14,7 @@ export default {
       type: Array,
       default: null,
       validator: function (value) {
-        return value.length === 12;
+        return value.length === 12
       },
       required: false,
     },
@@ -78,23 +78,23 @@ export default {
       required: false,
       validator: function (value) {
         if (value === null || value.length !== 2) {
-          return false;
+          return false
         }
 
-        const [firstRange, secondRange] = value;
+        const [firstRange, secondRange] = value
         if (secondRange <= firstRange) {
-          return false;
+          return false
         }
 
-        return true;
+        return true
       },
     },
     variant: {
       type: String,
-      default: "default",
+      default: 'default',
       required: false,
       validator: function (value) {
-        return ["default", "dark"].includes(value);
+        return ['default', 'dark'].includes(value)
       },
     },
     highlightExactDate: {
@@ -106,9 +106,9 @@ export default {
   computed: {
     monthsByLang: function () {
       if (this.months !== null && this.months.length === 12) {
-        return this.months;
+        return this.months
       }
-      return languages[this.lang];
+      return languages[this.lang]
     },
   },
-};
+}

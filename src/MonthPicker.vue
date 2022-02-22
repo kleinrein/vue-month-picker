@@ -3,7 +3,7 @@
     class="month-picker__container"
     :class="{
       [`month-picker--${variant}`]: true,
-      'year-picker': yearOnly,
+      'year-picker': yearOnly
     }"
   >
     <div v-if="showYear" class="month-picker__year">
@@ -34,8 +34,7 @@
             monthIndex > firstRangeMonthIndex &&
             monthIndex < secondRangeMonthIndex,
           'selected-range-first': range && firstRangeMonthIndex === monthIndex,
-          'selected-range-second':
-            range && secondRangeMonthIndex === monthIndex,
+          'selected-range-second': range && secondRangeMonthIndex === monthIndex
         }"
         class="month-picker__month"
         @click="selectMonth(monthIndex, true)"
@@ -59,31 +58,31 @@ export default {
     firstRangeMonthIndex: null,
     secondRangeMonthIndex: null,
     year: new Date().getFullYear(),
-    selectedYear: new Date().getFullYear(),
+    selectedYear: new Date().getFullYear()
   }),
   computed: {
-    currentMonth: function () {
+    currentMonth: function() {
       if (this.currentMonthIndex !== null) {
         return this.monthsByLang[this.currentMonthIndex];
       }
 
       return null;
     },
-    firstRangemonth: function () {
+    firstRangemonth: function() {
       if (this.firstRangeMonthIndex !== null) {
         return this.monthsByLang[this.firstRangeMonthIndex];
       }
 
       return null;
     },
-    secondRangemonth: function () {
+    secondRangemonth: function() {
       if (this.secondRangeMonthIndex !== null) {
         return this.monthsByLang[this.secondRangeMonthIndex];
       }
 
       return null;
     },
-    date: function () {
+    date: function() {
       const month = this.monthsByLang.indexOf(this.currentMonth) + 1;
       let dateFrom = new Date(`${this.year}/${month}/01`);
       let dateTo = new Date(this.year, month, 1);
@@ -98,7 +97,7 @@ export default {
         rangeFrom: null,
         rangeTo: null,
         rangeFromMonth: null,
-        rangeToMonth: null,
+        rangeToMonth: null
       };
 
       if (this.range) {
@@ -112,13 +111,14 @@ export default {
 
         dateResult.rangeFrom = this.firstRangeMonthIndex;
         dateResult.rangeTo = this.secondRangeMonthIndex;
-        dateResult.rangeFromMonth =
-          this.monthsByLang[this.firstRangeMonthIndex];
+        dateResult.rangeFromMonth = this.monthsByLang[
+          this.firstRangeMonthIndex
+        ];
         dateResult.rangeToMonth = this.monthsByLang[this.secondRangeMonthIndex];
       }
 
       return dateResult;
-    },
+    }
   },
   watch: {
     defaultMonth(newVal) {
@@ -127,7 +127,7 @@ export default {
     defaultYear(newVal) {
       this.year = newVal;
       this.selectedYear = newVal;
-    },
+    }
   },
   mounted() {
     if (this.defaultYear) {
@@ -246,7 +246,7 @@ export default {
 
       const monthKey = this.monthsByLang.indexOf(monthValue) + 1;
       const date = new Date(`${this.year}/${monthKey}/01`);
-      const isValidDate = (date) => date !== null && date instanceof Date;
+      const isValidDate = date => date !== null && date instanceof Date;
 
       if (isValidDate(this.minDate) && date < this.minDate) {
         return true;
@@ -257,8 +257,8 @@ export default {
       }
 
       return false;
-    },
-  },
+    }
+  }
 };
 </script>
 

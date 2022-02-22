@@ -27,8 +27,9 @@
   "devDependencies": {
     "@vue/eslint-config-prettier": "^6.0.0",
     "eslint": "^7.7.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0-beta.2",
-    "poi": "^12.7.2",
+    "poi": "^12.10.3",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10"
   },

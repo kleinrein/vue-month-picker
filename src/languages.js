@@ -46,5 +46,6 @@ export default {
   vi: ['Tháng một', 'Tháng hai', 'Tháng ba', 'Tháng tư', 'Tháng năm', 'Tháng sáu', 'Tháng bảy', 'Tháng tám', 'Tháng chín', 'Tháng mười', 'Tháng mười một', 'Tháng mười hai'],
   yi: ['יאנואר', 'פעברואַר', 'מאַרץ', 'אפריל', 'מייַ', 'יוני', 'יולי', 'אויגוסט', 'סעפטעמבער', 'אקטאבער', 'נאוועמבער', 'דעצעמבער'],
   zh: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-  zu: ['Januwari', 'Febhuwari', 'Mashi', 'April', 'Kwangathi', 'Juni', 'Julayi', 'Agasti', 'September', 'Okthoba', 'Novemba', 'December']
+  zu: ['Januwari', 'Febhuwari', 'Mashi', 'April', 'Kwangathi', 'Juni', 'Julayi', 'Agasti', 'September', 'Okthoba', 'Novemba', 'December'],
+  tm: ['ஜனவரி', 'பிப்ரவரி', 'மார்ச்', 'ஏப்ரல்', 'மே', 'ஜூன்', 'ஜூலை', 'ஆகஸ்ட்', 'செப்டம்பர்', 'அக்டோபர்', 'நவம்பர்', 'டிசம்பர்']
 }

@@ -16,6 +16,7 @@
       :months="months"
       :no-default="noDefault"
       :show-year="showYear"
+      :highlight-exact-date="highlightExactDate"
       :clearable="clearable"
       :variant="variant"
       :editable-year="editableYear"

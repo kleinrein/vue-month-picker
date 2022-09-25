@@ -3,16 +3,20 @@
     class="month-picker__container"
     :class="{
       [`month-picker--${variant}`]: true,
-      'year-picker': yearOnly,
+      'year-picker': yearOnly
     }"
   >
     <div v-if="showYear" class="month-picker__year">
-      <button type="button" @click="changeYear(-1)">&lsaquo;</button>
+      <button type="button" @click="changeYear(-1)">
+        <svg data-v-63f7b5ec="" width="20px" height="24px" viewBox="0 -1 16 34" class="vc-svg-icon"><path data-v-63f7b5ec="" d="M11.196 10c0 0.143-0.071 0.304-0.179 0.411l-7.018 7.018 7.018 7.018c0.107 0.107 0.179 0.268 0.179 0.411s-0.071 0.304-0.179 0.411l-0.893 0.893c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-8.321-8.321c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l8.321-8.321c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l0.893 0.893c0.107 0.107 0.179 0.25 0.179 0.411z"></path></svg>
+      </button>
       <p v-if="!editableYear">
         {{ year }}
       </p>
       <input v-else v-model.number="year" type="text" @change="onChange()" />
-      <button type="button" @click="changeYear(+1)">&rsaquo;</button>
+      <button type="button" @click="changeYear(+1)">
+        <svg data-v-63f7b5ec="" width="20px" height="24px" viewBox="-5 -1 16 34" class="vc-svg-icon"><path data-v-63f7b5ec="" d="M10.625 17.429c0 0.143-0.071 0.304-0.179 0.411l-8.321 8.321c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-0.893-0.893c-0.107-0.107-0.179-0.25-0.179-0.411 0-0.143 0.071-0.304 0.179-0.411l7.018-7.018-7.018-7.018c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l0.893-0.893c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l8.321 8.321c0.107 0.107 0.179 0.268 0.179 0.411z"></path></svg>
+      </button>
     </div>
     <div v-if="!yearOnly" class="month-picker">
       <div
@@ -21,14 +25,20 @@
         :class="{
           inactive: isInactive(month),
           clearable: clearable,
-          selected: !range && currentMonthIndex === monthIndex,
+          selected:
+            (highlightExactDate &&
+              !range &&
+              showYear &&
+              currentMonthIndex === monthIndex &&
+              year === selectedYear) ||
+            (!range && !showYear && currentMonthIndex == monthIndex) ||
+            (!highlightExactDate && !range && currentMonthIndex === monthIndex),
           'selected-range':
             range &&
             monthIndex > firstRangeMonthIndex &&
             monthIndex < secondRangeMonthIndex,
           'selected-range-first': range && firstRangeMonthIndex === monthIndex,
-          'selected-range-second':
-            range && secondRangeMonthIndex === monthIndex,
+          'selected-range-second': range && secondRangeMonthIndex === monthIndex
         }"
         class="month-picker__month"
         @click="selectMonth(monthIndex, true)"
@@ -52,30 +62,31 @@ export default {
     firstRangeMonthIndex: null,
     secondRangeMonthIndex: null,
     year: new Date().getFullYear(),
+    selectedYear: new Date().getFullYear()
   }),
   computed: {
-    currentMonth: function () {
+    currentMonth: function() {
       if (this.currentMonthIndex !== null) {
         return this.monthsByLang[this.currentMonthIndex];
       }
 
       return null;
     },
-    firstRangemonth: function () {
+    firstRangemonth: function() {
       if (this.firstRangeMonthIndex !== null) {
         return this.monthsByLang[this.firstRangeMonthIndex];
       }
 
       return null;
     },
-    secondRangemonth: function () {
+    secondRangemonth: function() {
       if (this.secondRangeMonthIndex !== null) {
         return this.monthsByLang[this.secondRangeMonthIndex];
       }
 
       return null;
     },
-    date: function () {
+    date: function() {
       const month = this.monthsByLang.indexOf(this.currentMonth) + 1;
       let dateFrom = new Date(`${this.year}/${month}/01`);
       let dateTo = new Date(this.year, month, 1);
@@ -86,10 +97,11 @@ export default {
         month: this.monthsByLang[month - 1],
         monthIndex: month,
         year: this.year,
+        selectedYear: this.selectedYear,
         rangeFrom: null,
         rangeTo: null,
         rangeFromMonth: null,
-        rangeToMonth: null,
+        rangeToMonth: null
       };
 
       if (this.range) {
@@ -103,13 +115,14 @@ export default {
 
         dateResult.rangeFrom = this.firstRangeMonthIndex;
         dateResult.rangeTo = this.secondRangeMonthIndex;
-        dateResult.rangeFromMonth =
-          this.monthsByLang[this.firstRangeMonthIndex];
+        dateResult.rangeFromMonth = this.monthsByLang[
+          this.firstRangeMonthIndex
+        ];
         dateResult.rangeToMonth = this.monthsByLang[this.secondRangeMonthIndex];
       }
 
       return dateResult;
-    },
+    }
   },
   watch: {
     defaultMonth(newVal) {
@@ -117,11 +130,13 @@ export default {
     },
     defaultYear(newVal) {
       this.year = newVal;
-    },
+      this.selectedYear = newVal;
+    }
   },
   mounted() {
     if (this.defaultYear) {
       this.year = this.defaultYear;
+      this.selectedYear = this.defaultYear;
     }
 
     if (this.range) {
@@ -163,6 +178,7 @@ export default {
       }
 
       this.currentMonthIndex = index;
+      this.selectedYear = this.year;
       this.onChange();
 
       if (input) {
@@ -214,6 +230,7 @@ export default {
     },
     changeYear(value) {
       this.year += value;
+
       if (this.isInactive(0)) {
         return;
       }
@@ -233,7 +250,7 @@ export default {
 
       const monthKey = this.monthsByLang.indexOf(monthValue) + 1;
       const date = new Date(`${this.year}/${monthKey}/01`);
-      const isValidDate = (date) => date !== null && date instanceof Date;
+      const isValidDate = date => date !== null && date instanceof Date;
 
       if (isValidDate(this.minDate) && date < this.minDate) {
         return true;
@@ -244,8 +261,8 @@ export default {
       }
 
       return false;
-    },
-  },
+    }
+  }
 };
 </script>
 

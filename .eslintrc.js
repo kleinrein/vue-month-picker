@@ -1,3 +1,3 @@
 module.exports = {
-    extends: ['plugin:vue/vue3-recommended', '@vue/prettier'],
-}
+  extends: ['plugin:vue/vue3-recommended', '@vue/prettier'],
+};

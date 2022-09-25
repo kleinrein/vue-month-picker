@@ -46,24 +46,25 @@
 </template>
 
 <script>
-import languages from './languages'
-import monthPicker from './month-picker'
+import languages from "./languages";
+import monthPicker from "./month-picker";
 
 export default {
-    name: 'MonthPicker',
-    mixins: [monthPicker],
-    emits: ['change', 'clear', 'input', 'change-year'],
-    data: () => ({
-        currentMonthIndex: null,
-        firstRangeMonthIndex: null,
-        secondRangeMonthIndex: null,
-        year: new Date().getFullYear(),
-    }),
-    computed: {
-        currentMonth: function () {
-            if (this.currentMonthIndex !== null) {
-                return this.monthsByLang[this.currentMonthIndex]
-            }
+  name: "MonthPicker",
+  mixins: [monthPicker],
+  emits: ["change", "clear", "input", "change-year"],
+  data: () => ({
+    currentMonthIndex: null,
+    firstRangeMonthIndex: null,
+    secondRangeMonthIndex: null,
+    year: new Date().getFullYear(),
+    selectedYear: new Date().getFullYear()
+  }),
+  computed: {
+    currentMonth: function() {
+      if (this.currentMonthIndex !== null) {
+        return this.monthsByLang[this.currentMonthIndex];
+      }
 
             return null
         },

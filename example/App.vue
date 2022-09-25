@@ -145,25 +145,26 @@
                 <em>{{ clearEmittedText }}</em>
             </strong>
 
-            <br />
-            <br />
+            <br / />
+            <br / />
             <month-picker
                 :lang="selectedLang"
                 :clearable="isClearable"
                 :editable-year="isEditableYear"
                 :variant="selectedVariant"
                 :show-year="showYear"
+        :highlight-exact-date="highlightExactDate"
                 :max-date="maxDate !== null ? new Date(maxDate) : null"
                 :min-date="minDate !== null ? new Date(minDate) : null"
                 :year-only="isYearOnly"
                 :range="isRange"
                 :default-month-range="[2, 4]"
                 @change="showDate"
-                @change-year="(v) => (year = v)"
+                @change-year="(v) => ((year = v))"
                 @clear="showClearText"
             />
-            <br />
-            <br />
+            <br / />
+            <br / />
 
             <h3>Input</h3>
             <month-picker-input

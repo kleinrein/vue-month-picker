@@ -88,18 +88,18 @@ export default {
       immediate: true,
       handler(value) {
         if (!value || !this.inputPreFilled) return;
-        this.selectedDate = `${
-          this.monthsByLang[this.defaultMonth - 1]
-        }, ${value}`;
+        this.selectedDate = this.dateFormat
+          .replace("%n", this.monthsByLang[this.defaultMonth - 1])
+          .replace("%Y", value);
       },
     },
     defaultMonth: {
       immediate: true,
       handler(value) {
         if (!value || !this.inputPreFilled) return;
-        this.selectedDate = `${this.monthsByLang[value - 1]}, ${
-          this.defaultYear
-        }`;
+        this.selectedDate = this.dateFormat
+          .replace("%n", this.monthsByLang[value - 1])
+          .replace("%Y", this.defaultYear);
       },
     },
   },
@@ -108,7 +108,9 @@ export default {
       if (this.range) {
         this.selectedDate = `${date.rangeFromMonth} - ${date.rangeToMonth}, ${date.year}`;
       } else {
-        this.selectedDate = `${date.month}, ${date.year}`;
+        this.selectedDate = this.dateFormat
+          .replace("%n", date.month)
+          .replace("%Y", date.year);
       }
 
       this.monthPickerVisible = false;
@@ -124,7 +126,9 @@ export default {
       if (this.range) {
         this.selectedDate = `${date.rangeFromMonth} - ${date.rangeToMonth}, ${date.year}`;
       } else {
-        this.selectedDate = `${date.month}, ${date.year}`;
+        this.selectedDate = this.dateFormat
+          .replace("%n", date.month)
+          .replace("%Y", date.year);
       }
       this.$emit("change", date);
     },

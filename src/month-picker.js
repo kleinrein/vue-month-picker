@@ -97,6 +97,10 @@ export default {
         return ['default', 'dark'].includes(value)
       },
     },
+    dateFormat: {
+      type: String,
+      default: "%n, %Y",
+      },
     highlightExactDate: {
       type: Boolean,
       default: false,

@@ -96,21 +96,23 @@ _The MonthPicker and the MonthPickerInput shares the same props and events._
 
 ### Props
 
-| Prop             | Type    | Default | Description                                                                                                   |
-| ---------------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------- |
-| lang             | String  | en      | The language of the months.                                                                                   |
-| months           | Array   | []      | Custom months if language is unsupported.                                                                     |
-| default-month    | Integer |         | The default selected month of the month picker. To show the month picker unselected, use the no-default prop. |
-| default-year     | Integer |         | The default year of the month picker.                                                                         |
-| no-default       | Boolean | false   | Show the month picker unselected.                                                                             |
-| show-year        | Boolean | false   | Show the year picker.                                                                                         |
-| editable-year    | Boolean | false   | Year appears as a input field.                                                                                |
-| clearable        | Boolean | false   | Possible to clear the chosen month.                                                                           |
-| variant          | String  | default | Color variant. Currently supports default and dark.                                                           |
-| year-only        | Boolean | false   | Hide the months so it acts as a pure year picker                                                              |
-| max-date         | Date    | null    | Set a max date. Higher dates will be disabled.                                                                |
-| min-date         | Date    | null    | Set a min date. Lower dates will be disabled.                                                                 |
-| input-pre-filled | Boolean | false   | Only applies for `<month-picker-input>`. Input will be pre filled if default-year and default-month is set.   |
+| Prop             | Type    | Default  | Description                                                                                                   |
+| ---------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| lang             | String  | en       | The language of the months.                                                                                   |
+| months           | Array   | []       | Custom months if language is unsupported.                                                                     |
+| default-month    | Integer |          | The default selected month of the month picker. To show the month picker unselected, use the no-default prop. |
+| default-year     | Integer |          | The default year of the month picker.                                                                         |
+| no-default       | Boolean | false    | Show the month picker unselected.                                                                             |
+| show-year        | Boolean | false    | Show the year picker.                                                                                         |
+| editable-year    | Boolean | false    | Year appears as a input field.                                                                                |
+| clearable        | Boolean | false    | Possible to clear the chosen month.                                                                           |
+| variant          | String  | default  | Color variant. Currently supports default and dark.                                                           |
+| year-only        | Boolean | false    | Hide the months so it acts as a pure year picker                                                              |
+| max-date         | Date    | null     | Set a max date. Higher dates will be disabled.                                                                |
+| min-date         | Date    | null     | Set a min date. Lower dates will be disabled.                                                                |
+| date-format      | String  | "%n, %Y" | Set a display format for non-ranged dates.                                                                |
+| input-pre-filled | Boolean | false    | Only applies for `<month-picker-input>`. Input will be pre filled if default-year and default-month is set.   |
+
 
 ### Events
 

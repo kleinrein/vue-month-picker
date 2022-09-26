@@ -1,6 +1,6 @@
 {
   "name": "vue-month-picker",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "main": "src/index.js",
   "description": "A simple and elegant month picker for Vue",
   "scripts": {
@@ -31,9 +31,7 @@
     "eslint-plugin-vue": "^7.0.0-beta.2",
     "poi": "^12.10.3",
     "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "dependencies": {
+    "vue-template-compiler": "^2.6.10",
     "@poi/plugin-eslint": "^12.1.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.0"

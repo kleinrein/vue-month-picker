@@ -32,157 +32,188 @@
 
         <div class="content">
             <h1>vue-month-picker</h1>
+            <div class="content__grid">
+                <div>
+                    <h2>Parameters</h2>
 
-            <h2>Parameters</h2>
-
-            <div class="form__container">
-                <label class="form__label">
-                    show-year
-                    <input
-                        v-model="showYear"
-                        class="form__input"
-                        type="checkbox"
-                    />
-                </label>
-
-                <label class="form__label">
-                    clearable
-                    <input
-                        v-model="isClearable"
-                        class="form__input"
-                        type="checkbox"
-                    />
-                </label>
-
-                <label class="form__label">
-                    editable-year
-                    <input
-                        v-model="isEditableYear"
-                        class="form__input"
-                        type="checkbox"
-                    />
-                </label>
-
-                <label class="form__label">
-                    year-only
-                    <input
-                        v-model="isYearOnly"
-                        class="form__input"
-                        type="checkbox"
-                    />
-                </label>
-
-                <label class="form__label">
-                    range
-                    <input
-                        v-model="isRange"
-                        class="form__input"
-                        type="checkbox"
-                    />
-                </label>
-
-                <label class="form__label">
-                    max date
-                    <input v-model="maxDate" class="form__input" type="date" />
-                </label>
-
-                <label class="form__label">
-                    min date
-                    <input v-model="minDate" class="form__input" type="date" />
-                </label>
-
-                <label class="form__label">
-                    date format
-                    <input
-                        v-model="dateFormat"
-                        class="form__input"
-                        type="text"
-                    />
-                </label>
-
-                <br />
-
-                <label class="form__label">
-                    variant
-                    <div>
-                        <div
-                            v-for="variant in variants"
-                            :key="`variant-${variant}`"
-                        >
+                    <div class="form__container">
+                        <label class="form__label">
+                            show-year
                             <input
-                                :id="variant"
-                                v-model="selectedVariant"
-                                type="radio"
-                                name="variant"
-                                :value="variant"
+                                v-model="showYear"
+                                class="form__input"
+                                type="checkbox"
                             />
-                            <label :for="variant">{{ variant }}</label>
-                        </div>
+                        </label>
+
+                        <label class="form__label">
+                            clearable
+                            <input
+                                v-model="isClearable"
+                                class="form__input"
+                                type="checkbox"
+                            />
+                        </label>
+
+                        <label class="form__label">
+                            editable-year
+                            <input
+                                v-model="isEditableYear"
+                                class="form__input"
+                                type="checkbox"
+                            />
+                        </label>
+
+                        <label class="form__label">
+                            year-only
+                            <input
+                                v-model="isYearOnly"
+                                class="form__input"
+                                type="checkbox"
+                            />
+                        </label>
+
+                        <label class="form__label">
+                            range
+                            <input
+                                v-model="isRange"
+                                class="form__input"
+                                type="checkbox"
+                            />
+                        </label>
+
+                        <label class="form__label">
+                            max date
+                            <input
+                                v-model="maxDate"
+                                class="form__input"
+                                type="date"
+                            />
+                        </label>
+
+                        <label class="form__label">
+                            min date
+                            <input
+                                v-model="minDate"
+                                class="form__input"
+                                type="date"
+                            />
+                        </label>
+                        <label class="form__label">
+                            max today
+                            <input
+                                v-model="maxToday"
+                                class="form__input"
+                                type="date"
+                            />
+                        </label>
+
+                        <label class="form__label">
+                            highlight exact date
+                            <input
+                                v-model="highlightExactDate"
+                                class="form__input"
+                                type="checkbox"
+                            />
+                        </label>
+
+                        <label class="form__label">
+                            date format
+                            <input
+                                v-model="dateFormat"
+                                class="form__input"
+                                type="text"
+                            />
+                        </label>
+
+                        <br />
+
+                        <label class="form__label">
+                            variant
+                            <div>
+                                <div
+                                    v-for="variant in variants"
+                                    :key="`variant-${variant}`"
+                                >
+                                    <input
+                                        :id="variant"
+                                        v-model="selectedVariant"
+                                        type="radio"
+                                        name="variant"
+                                        :value="variant"
+                                    />
+                                    <label :for="variant">{{ variant }}</label>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="form__label">
+                            lang
+                            <select v-model="selectedLang" class="form__input">
+                                <option
+                                    v-for="(lang, langKey) in languages"
+                                    :key="`language-${langKey}`"
+                                    :value="langKey"
+                                >
+                                    {{ langKey }}
+                                </option>
+                            </select>
+                        </label>
                     </div>
-                </label>
 
-                <label class="form__label">
-                    lang
-                    <select v-model="selectedLang" class="form__input">
-                        <option
-                            v-for="(lang, langKey) in languages"
-                            :key="`language-${langKey}`"
-                            :value="langKey"
-                        >
-                            {{ langKey }}
-                        </option>
-                    </select>
-                </label>
+                    <h3>Inline</h3>
+                    <strong>@change: string date</strong>
+                    <div>
+                        <pre>{{ date }}</pre>
+                    </div>
+                </div>
+                <div>
+                    <strong>
+                        @clear
+                        <em>{{ clearEmittedText }}</em>
+                    </strong>
+
+                    <br />
+                    <br />
+                    <month-picker
+                        :lang="selectedLang"
+                        :clearable="isClearable"
+                        :editable-year="isEditableYear"
+                        :variant="selectedVariant"
+                        :show-year="showYear"
+                        :highlight-exact-date="highlightExactDate"
+                        :max-date="maxDate !== null ? new Date(maxDate) : null"
+                        :min-date="minDate !== null ? new Date(minDate) : null"
+                        :year-only="isYearOnly"
+                        :range="isRange"
+                        :default-month-range="[2, 4]"
+                        @change="showDate"
+                        @change-year="(v) => (year = v)"
+                        @clear="showClearText"
+                    />
+
+                    <br />
+                    <br />
+
+                    <h3>Input</h3>
+                    <month-picker-input
+                        :lang="selectedLang"
+                        :clearable="isClearable"
+                        :editable-year="isEditableYear"
+                        :variant="selectedVariant"
+                        :show-year="showYear"
+                        :max-date="maxDate !== null ? new Date(maxDate) : null"
+                        :min-date="minDate !== null ? new Date(minDate) : null"
+                        :year-only="isYearOnly"
+                        :default-month="8"
+                        :date-format="dateFormat"
+                        :default-year="2020"
+                        :input-pre-filled="true"
+                        :range="isRange"
+                        @change="showDate"
+                    />
+                </div>
             </div>
-
-            <h3>Inline</h3>
-            <strong>@change: string date</strong>
-            <div>
-                <pre>{{ date }}</pre>
-            </div>
-            <strong>
-                @clear
-                <em>{{ clearEmittedText }}</em>
-            </strong>
-
-            <br / />
-            <br / />
-            <month-picker
-                :lang="selectedLang"
-                :clearable="isClearable"
-                :editable-year="isEditableYear"
-                :variant="selectedVariant"
-                :show-year="showYear"
-        :highlight-exact-date="highlightExactDate"
-                :max-date="maxDate !== null ? new Date(maxDate) : null"
-                :min-date="minDate !== null ? new Date(minDate) : null"
-                :year-only="isYearOnly"
-                :range="isRange"
-                :default-month-range="[2, 4]"
-                @change="showDate"
-                @change-year="(v) => ((year = v))"
-                @clear="showClearText"
-            />
-            <br / />
-            <br / />
-
-            <h3>Input</h3>
-            <month-picker-input
-                :lang="selectedLang"
-                :clearable="isClearable"
-                :editable-year="isEditableYear"
-                :variant="selectedVariant"
-                :show-year="showYear"
-                :max-date="maxDate !== null ? new Date(maxDate) : null"
-                :min-date="minDate !== null ? new Date(minDate) : null"
-                :year-only="isYearOnly"
-                :default-month="8"
-                :date-format="dateFormat"
-                :default-year="2020"
-                :input-pre-filled="true"
-                :range="isRange"
-                @change="showDate"
-            />
         </div>
     </div>
 </template>
@@ -207,9 +238,11 @@ export default {
             isMonthPickerVisible: false,
             isClearable: false,
             isEditableYear: false,
-            dateFormat: null,
+            dateFormat: '%n, %Y',
+            highlightExactDate: false,
             maxDate: null,
             minDate: null,
+            maxToday: null,
             variants: ['default', 'dark'],
             selectedVariant: 'default',
             selectedDate: null,
@@ -255,6 +288,13 @@ export default {
     max-width: 800px;
     margin: 0 auto;
     font-family: 'Oxygen', sans-serif;
+    padding-bottom: 20rem;
+}
+
+.content__grid {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    gap: 4rem;
 }
 
 .content h1 {

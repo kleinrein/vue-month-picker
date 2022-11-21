@@ -224,7 +224,6 @@ export default {
             this.secondRangeMonthIndex = secondRange
         },
         changeYear(value) {
-            console.log(this.year)
             this.year += value
             if (this.isInactive(value)) {
                 return

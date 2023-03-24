@@ -102,9 +102,13 @@ export default {
     methods: {
         populateInput(date) {
             if (this.range) {
-                if (date.rangeFromYear === date.rangeToYear && date.rangeFromMonth && date.rangeToMonth) {
+                if (
+                    date.rangeFromYear === date.rangeToYear &&
+                    date.rangeFromMonth &&
+                    date.rangeToMonth
+                ) {
                     this.selectedDate = `${date.rangeFromMonth} - ${date.rangeToMonth}, ${date.year}`
-                } else if(date.rangeFromMonth && date.rangeToMonth) {
+                } else if (date.rangeFromMonth && date.rangeToMonth) {
                     this.selectedDate = `${date.rangeFromMonth} ${date.rangeFromYear} - ${date.rangeToMonth} ${date.rangeToYear}`
                 }
             } else {

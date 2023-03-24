@@ -122,6 +122,8 @@ export default {
                     this.monthsByLang[this.firstRangeMonthIndex]
                 dateResult.rangeToMonth =
                     this.monthsByLang[this.secondRangeMonthIndex]
+                dateResult.rangeFromYear = this.firstRangeMonthYear
+                dateResult.rangeToYear = this.secondRangeMonthYear
             }
 
             return dateResult

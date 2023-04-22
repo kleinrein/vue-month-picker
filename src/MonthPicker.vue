@@ -37,7 +37,8 @@
                             currentMonthIndex == monthIndex) ||
                         (!highlightExactDate &&
                             !range &&
-                            currentMonthIndex === monthIndex),
+                            currentMonthIndex === monthIndex) ||
+                        (range && isInSelectedRange(monthIndex)),
                 }"
                 class="month-picker__month"
                 @click="selectMonth(monthIndex, true)"
@@ -59,7 +60,9 @@ export default {
     data: () => ({
         currentMonthIndex: null,
         firstRangeMonthIndex: null,
+        firstRangeMonthYear: null,
         secondRangeMonthIndex: null,
+        secondRangeMonthYear: null,
         year: new Date().getFullYear(),
         selectedYear: new Date().getFullYear(),
     }),
@@ -99,7 +102,9 @@ export default {
                 rangeFrom: null,
                 rangeTo: null,
                 rangeFromMonth: null,
+                rangeFromYear: null,
                 rangeToMonth: null,
+                rangeToYear: null,
             }
 
             if (this.range) {
@@ -117,6 +122,8 @@ export default {
                     this.monthsByLang[this.firstRangeMonthIndex]
                 dateResult.rangeToMonth =
                     this.monthsByLang[this.secondRangeMonthIndex]
+                dateResult.rangeFromYear = this.firstRangeMonthYear
+                dateResult.rangeToYear = this.secondRangeMonthYear
             }
 
             return dateResult
@@ -180,9 +187,11 @@ export default {
                 this.$emit('input', this.date)
             }
         },
+
         selectMonthRange(index, input) {
             if (this.firstRangeMonthIndex === null) {
                 this.firstRangeMonthIndex = index
+                this.firstRangeMonthYear = this.year
                 return
             }
 
@@ -191,22 +200,73 @@ export default {
                 this.secondRangeMonthIndex !== null
             ) {
                 this.firstRangeMonthIndex = index
+                this.firstRangeMonthYear = this.year
                 this.secondRangeMonthIndex = null
+                this.secondRangeMonthYear = null
                 return
             }
 
-            if (index >= this.firstRangeMonthIndex) {
+            if (
+                index >= this.firstRangeMonthIndex ||
+                this.year > this.firstRangeMonthYear
+            ) {
                 this.secondRangeMonthIndex = index
+                this.secondRangeMonthYear = this.year
                 this.onChange()
 
                 if (input) {
                     this.$emit('input', this.date)
                 }
+
                 return
             }
 
             this.firstRangeMonthIndex = index
+            this.firstRangeMonthYear = this.year
         },
+
+        isInSelectedRange(monthIndex) {
+            if (
+                this.firstRangeMonthIndex == null &&
+                this.secondRangeMonthIndex == null
+            ) {
+                return false
+            }
+
+            const isOnlyMonthSelected =
+                !this.secondRangeMonthIndex &&
+                monthIndex === this.firstRangeMonthIndex &&
+                this.firstRangeMonthYear === this.year
+
+            if (isOnlyMonthSelected) {
+                return true
+            }
+
+            const isStartMonthOrAfter = monthIndex >= this.firstRangeMonthIndex
+            const isEndMonthOrBefore = monthIndex <= this.secondRangeMonthIndex
+            const isBetweenStartAndEndYears =
+                this.year > this.firstRangeMonthYear &&
+                this.year < this.secondRangeMonthYear
+            const isOverMultipleYears =
+                this.secondRangeMonthYear - this.firstRangeMonthYear > 0
+
+            if (!isOverMultipleYears) {
+                return (
+                    isStartMonthOrAfter &&
+                    isEndMonthOrBefore &&
+                    this.year === this.firstRangeMonthYear
+                )
+            } else {
+                return (
+                    isBetweenStartAndEndYears ||
+                    (isStartMonthOrAfter &&
+                        this.year === this.firstRangeMonthYear) ||
+                    (isEndMonthOrBefore &&
+                        this.year === this.secondRangeMonthYear)
+                )
+            }
+        },
+
         setDefaultMonthRange() {
             if (
                 this.defaultMonthRange === null ||

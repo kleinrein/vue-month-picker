@@ -26,6 +26,7 @@
             :range="range"
             @input="populateInput"
             @change="updateDate"
+            @clear="clearMonthPicker"
         />
     </div>
 </template>
@@ -72,7 +73,7 @@ export default {
             default: null,
         },
     },
-    emits: ['change', 'input'],
+    emits: ['change', 'input', 'clear'],
     data() {
         return {
             monthPickerVisible: false,
@@ -136,6 +137,9 @@ export default {
             }
             this.$emit('change', date)
         },
+        clearMonthPicker() {
+            this.$emit('clear');
+        }
     },
 }
 </script>

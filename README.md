@@ -145,6 +145,7 @@ Available languages
 | ---- | ---------- |
 | af   | Afrikaans  |
 | ar   | Arabic     |
+| bg   | Bulgarian  |
 | cs   | Czech      |
 | da   | Danish     |
 | de   | German     |

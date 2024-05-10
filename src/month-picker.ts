@@ -1,11 +1,11 @@
 import languages from './languages'
 
-export default {
-    props: {
+export function monthPickerProps() {
+    return {
         lang: {
             type: String,
             default: 'en',
-            validator: function (value) {
+            validator: function (value: string) {
                 return Object.keys(languages).some((l) => Object.is(l, value))
             },
             required: false,
@@ -13,7 +13,7 @@ export default {
         months: {
             type: Array,
             default: null,
-            validator: function (value) {
+            validator: function (value: string) {
                 return value.length === 12
             },
             required: false,
@@ -76,7 +76,7 @@ export default {
             type: Array,
             default: null,
             required: false,
-            validator: function (value) {
+            validator: function (value: string) {
                 if (value === null || value.length !== 2) {
                     return false
                 }
@@ -93,7 +93,7 @@ export default {
             type: String,
             default: 'default',
             required: false,
-            validator: function (value) {
+            validator: function (value: string) {
                 return ['default', 'dark'].includes(value)
             },
         },
@@ -106,13 +106,5 @@ export default {
             default: false,
             required: false,
         },
-    },
-    computed: {
-        monthsByLang: function () {
-            if (this.months !== null && this.months.length === 12) {
-                return this.months
-            }
-            return languages[this.lang]
-        },
-    },
+    }
 }

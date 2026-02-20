@@ -1,20 +1,49 @@
 {
-  "name": "vue-month-picker-v2",
-  "private": true,
-  "version": "0.0.0",
+  "name": "vue-month-picker",
+  "version": "2.0.0",
+  "description": "A lightweight month picker for Vue 3 with no dependencies.",
   "type": "module",
+  "main": "./dist/vue-month-picker.umd.js",
+  "module": "./dist/vue-month-picker.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-month-picker.es.js",
+      "require": "./dist/vue-month-picker.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "vue": "^3.4.21"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0",
-    "vue-tsc": "^2.0.6"
+    "@types/node": "^25.3.0",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^28.1.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18",
+    "vue": "^3.5.28",
+    "vue-tsc": "^3.2.4"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "month-picker",
+    "date-picker",
+    "component"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "overrides": {
+    "minimatch": ">=10.2.1"
   }
 }

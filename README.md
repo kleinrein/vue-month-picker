@@ -1,215 +1,300 @@
-[![NPM version](https://img.shields.io/npm/v/vue-month-picker.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
-[![NPM downloads](https://img.shields.io/npm/dm/vue-month-picker.svg?style=for-the-badge)](https://www.npmjs.com/package/vue-month-picker)
-
 # vue-month-picker
 
-A lightweight month picker for Vue.js with no dependencies.
+[![NPM version](https://img.shields.io/npm/v/vue-month-picker.svg?style=flat-square)](https://www.npmjs.com/package/vue-month-picker)
+[![NPM downloads](https://img.shields.io/npm/dm/vue-month-picker.svg?style=flat-square)](https://www.npmjs.com/package/vue-month-picker)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-![VueMonthPicker](picture.PNG)
+A lightweight, dependency-free month picker component for **Vue 3** with TypeScript support.
 
-## Install
+![vue-month-picker](picture.PNG)
 
-npm
+---
+
+## Features
+
+- Zero runtime dependencies
+- TypeScript-first (`<script setup>` + Composition API)
+- Inline picker (`MonthPicker`) and input-driven picker (`MonthPickerInput`)
+- Range selection
+- `minDate` / `maxDate` constraints
+- Configurable `dateFormat` tokens
+- Dark theme
+- Year-only mode
+- Clearable selection
+- 45+ built-in languages
+
+---
+
+## Installation
 
 ```bash
-npm install --save vue-month-picker
+npm install vue-month-picker
 ```
-
-yarn
 
 ```bash
-yarn add --save vue-month-picker
+yarn add vue-month-picker
 ```
 
-## Usage
+---
 
-### Bundler (Webpack, Rollup)
+## Quick start
 
-```js
-import Vue from 'vue'
-import { MonthPicker } from 'vue-month-picker'
-import { MonthPickerInput } from 'vue-month-picker'
+### Register globally
 
-Vue.use(MonthPicker)
-Vue.use(MonthPickerInput)
+```ts
+import { createApp } from 'vue'
+import App from './App.vue'
+import VueMonthPicker from 'vue-month-picker'
+
+createApp(App).use(VueMonthPicker).mount('#app')
 ```
 
-### Examples
-
-**Input**
+### Register locally
 
 ```vue
+<script setup lang="ts">
+import { MonthPicker, MonthPickerInput } from 'vue-month-picker'
+import type { IDateResult } from 'vue-month-picker'
 
-<template>
-  <month-picker-input :no-default="true"></month-picker-input>
-</template>
-
-<script>
-import { MonthPickerInput } from 'vue-month-picker'
-
-export default {
-	components: {
-		MonthPickerInput
-	}
+const onDateChange = (date: IDateResult) => {
+  console.log(date.month, date.year)
 }
 </script>
+
+<template>
+  <MonthPicker @change="onDateChange" />
+</template>
 ```
 
-**Inline**
+---
+
+## Usage examples
+
+### Inline picker
 
 ```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { MonthPicker } from 'vue-month-picker'
+import type { IDateResult } from 'vue-month-picker'
+
+const date = ref<IDateResult | null>(null)
+</script>
 
 <template>
-	<p>{{ date.month }}</p>
-  <month-picker @change="showDate"></month-picker>
+  <MonthPicker @change="date = $event" />
+  <p v-if="date">{{ date.month }} {{ date.year }}</p>
 </template>
-
-<script>
-import { MonthPicker } from 'vue-month-picker'
-
-export default {
-	data() {
-		return {
-			date: {
-				from: null,
-				to: null,
-				month: null,
-				year: null
-			}
-		}
-	},
-	components: {
-		MonthPicker
-	},
-	methods: {
-		showDate (date) {
-			this.date = date
-		}
-	}
-}
-</script>
 ```
 
-## Api
+### Input-driven picker
 
-_The MonthPicker and the MonthPickerInput shares the same props and events._
+```vue
+<script setup lang="ts">
+import { MonthPickerInput } from 'vue-month-picker'
+</script>
+
+<template>
+  <MonthPickerInput
+    :no-default="true"
+    date-format="%n %Y"
+    placeholder="Select a month"
+  />
+</template>
+```
+
+### Pre-filled input with a reactive default
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { MonthPickerInput } from 'vue-month-picker'
+
+const month = ref(new Date().getMonth() + 1)
+const year = ref(new Date().getFullYear())
+</script>
+
+<template>
+  <MonthPickerInput
+    :input-pre-filled="true"
+    :default-month="month"
+    :default-year="year"
+    date-format="%n, %Y"
+  />
+</template>
+```
+
+### With min/max date constraints
+
+```vue
+<template>
+  <MonthPicker
+    :min-date="new Date(2024, 0, 1)"
+    :max-date="new Date(2024, 11, 31)"
+    :default-year="2024"
+    :default-month="6"
+    @change="onDateChange"
+  />
+</template>
+```
+
+### Range selection
+
+```vue
+<template>
+  <MonthPicker
+    :range="true"
+    :no-default="true"
+    @change="onRangeChange"
+  />
+</template>
+```
+
+### Dark theme
+
+```vue
+<template>
+  <MonthPicker variant="dark" />
+</template>
+```
+
+---
+
+## API
+
+> `MonthPicker` and `MonthPickerInput` share the same props and events.
 
 ### Props
 
-| Prop             | Type    | Default  | Description                                                                                                   |
-| ---------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------- |
-| lang             | String  | en       | The language of the months.                                                                                   |
-| months           | Array   | []       | Custom months if language is unsupported.                                                                     |
-| default-month    | Integer |          | The default selected month of the month picker. To show the month picker unselected, use the no-default prop. |
-| default-year     | Integer |          | The default year of the month picker.                                                                         |
-| no-default       | Boolean | false    | Show the month picker unselected.                                                                             |
-| show-year        | Boolean | false    | Show the year picker.                                                                                         |
-| editable-year    | Boolean | false    | Year appears as a input field.                                                                                |
-| clearable        | Boolean | false    | Possible to clear the chosen month.                                                                           |
-| variant          | String  | default  | Color variant. Currently supports default and dark.                                                           |
-| year-only        | Boolean | false    | Hide the months so it acts as a pure year picker                                                              |
-| max-date         | Date    | null     | Set a max date. Higher dates will be disabled.                                                                |
-| min-date         | Date    | null     | Set a min date. Lower dates will be disabled.                                                                |
-| date-format      | String  | "%n, %Y" | Set a display format for non-ranged dates.                                                                |
-| input-pre-filled | Boolean | false    | Only applies for `<month-picker-input>`. Input will be pre filled if default-year and default-month is set.   |
+| Prop               | Type              | Default    | Description |
+| ------------------ | ----------------- | ---------- | ----------- |
+| `lang`             | `String`          | `"en"`     | Language code for month names. See [supported languages](#languages). |
+| `months`           | `String[]`        | —          | Override month names with a custom 12-element array. |
+| `default-month`    | `Number`          | —          | Initially selected month (1–12). Omit or use `no-default` to start unselected. |
+| `default-year`     | `Number`          | current    | Initially displayed year. |
+| `no-default`       | `Boolean`         | `false`    | Start with no month selected. |
+| `show-year`        | `Boolean`         | `true`     | Show the year header with navigation arrows. |
+| `editable-year`    | `Boolean`         | `false`    | Render the year as a text input instead of a label. |
+| `clearable`        | `Boolean`         | `false`    | Allow clicking the selected month again to deselect it. |
+| `variant`          | `String`          | `"default"`| Color theme — `"default"` or `"dark"`. |
+| `year-only`        | `Boolean`         | `false`    | Hide months and act as a pure year picker. |
+| `min-date`         | `Date`            | `null`     | Months before this date are disabled. |
+| `max-date`         | `Date`            | `null`     | Months after this date are disabled. |
+| `range`            | `Boolean`         | `false`    | Enable two-click range selection. |
+| `default-month-range` | `[Number, Number]` | `null` | Default range as `[fromIndex, toIndex]` (0-based). |
+| `date-format`      | `String`          | `"%n, %Y"` | Format string for the `MonthPickerInput` display value. See [tokens](#date-format-tokens). |
+| `input-pre-filled` | `Boolean`         | `false`    | _(MonthPickerInput only)_ Pre-fill the input on mount using `default-month` and `default-year`. |
+| `placeholder`      | `String`          | `null`     | _(MonthPickerInput only)_ Input placeholder text. |
+| `highlight-exact-date` | `Boolean`    | `false`    | Only highlight the selected cell when both month and year match. |
 
+### date-format tokens
+
+| Token | Output                   | Example |
+| ----- | ------------------------ | ------- |
+| `%n`  | Full month name          | `January` |
+| `%m`  | Zero-padded month number | `01` |
+| `%M`  | Unpadded month number    | `1` |
+| `%Y`  | 4-digit year             | `2024` |
+| `%y`  | 2-digit year             | `24` |
+
+```
+"%n, %Y"  →  January, 2024
+"%m/%Y"   →  01/2024
+"%M/%y"   →  1/24
+"%n %y"   →  January 24
+```
 
 ### Events
 
-| Event        | Returns | Description                                                                                                                                                                                             |
-| ------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| @change      | Object  | Indicates that the value has been changed. NB, this will fire when a default value has been selected when the month picker is mounted. Use the input event if you want the value the user has selected. |
-| @change-year | Number  | Indicates that the year has been changed. Will emit the year value.                                                                                                                                     |
-| @input       | Object  | Indicates that the value has been changed by the user.                                                                                                                                                  |
-| @clear       |         | Indicates that user have cleared the selected value                                                                                                                                                     |
+| Event          | Payload        | Description |
+| -------------- | -------------- | ----------- |
+| `@change`      | `IDateResult`  | Fires whenever the selected value changes, including on mount when a default is set. |
+| `@input`       | `IDateResult`  | Fires only on explicit user interaction. Prefer this over `@change` for form bindings. |
+| `@change-year` | `Number`       | Fires when the user navigates to a different year. |
+| `@clear`       | —              | Fires when the user clears the selection (requires `clearable`). |
 
-#### _Date object_
+### IDateResult
 
-Change and input events returns a date object with the following properties:
+```ts
+interface IDateResult {
+  from: Date          // first day of the selected month
+  to: Date            // last day of the selected month
+  month: string       // full month name in the selected language
+  monthIndex: number  // 1-based month number
+  year: number
 
-- ```from```: Start of the month.
-- ```to```: End of the month.
-- ```month```: Selected month.
-- ```monthIndex```: Selected month index.
-- ```year```: Selected year.
-- ```rangeFrom```: Selected month index range from.
-- ```rangeTo```: Selected month index range to.
-- ```rangeFromMonth```: Selected month from.
-- ```rangeToMonth```: Selected to month.
+  // Range mode only
+  rangeFrom?: number       // 0-based start index
+  rangeTo?: number         // 0-based end index
+  rangeFromMonth?: string  // month name at range start
+  rangeToMonth?: string    // month name at range end
+}
+```
 
-## Translations
+---
 
-Available languages
+## Languages
 
-| Abbr | Language   |
-| ---- | ---------- |
-| af   | Afrikaans  |
-| ar   | Arabic     |
-| bg   | Bulgarian  |
-| cs   | Czech      |
-| da   | Danish     |
-| de   | German     |
-| el   | Greek      |
-| en   | English    |
-| es   | Spanish    |
-| et   | Estonian   |
-| fi   | Finnish    |
-| fr   | French     |
-| hi   | Hindi      |
-| hr   | Croatian   |
-| hu   | Hungarian  |
-| id   | Indonesian |
-| is   | Icelandic  |
-| it   | Italian    |
-| ja   | Japanese   |
-| km   | Khmer      |
-| ko   | Korean     |
-| ku   | Kurdish    |
-| lt   | Lithuanian |
-| lv   | Latvian    |
-| ms   | Malay      |
-| ne   | Nepali     |
-| nl   | Dutch      |
-| no   | Norwegian  |
-| pa   | Panjabi    |
-| pl   | Polish     |
-| pt   | Portuguese |
-| ru   | Russian    |
-| sv   | Swedish    |
-| sk   | Slovak     |
-| sl   | Slovenian  |
-| so   | Somali     |
-| sr   | Serbian    |
-| sq   | Albanian   |
-| th   | Thai       |
-| tr   | Turkish    |
-| uk   | Ukrainian  |
-| ur   | Urdu       |
-| vi   | Vietnamese |
-| yi   | Yiddish    |
-| zh   | Chinese    |
-| zu   | Zulu       |
+45+ locales are built in. Pass the ISO code to the `lang` prop:
 
-**My language is unsupported**
+| Code | Language   | Code | Language    | Code | Language   |
+| ---- | ---------- | ---- | ----------- | ---- | ---------- |
+| `af` | Afrikaans  | `it` | Italian     | `ru` | Russian    |
+| `ar` | Arabic     | `ja` | Japanese    | `sk` | Slovak     |
+| `bg` | Bulgarian  | `km` | Khmer       | `sl` | Slovenian  |
+| `cs` | Czech      | `ko` | Korean      | `so` | Somali     |
+| `da` | Danish     | `ku` | Kurdish     | `sq` | Albanian   |
+| `de` | German     | `lt` | Lithuanian  | `sr` | Serbian    |
+| `el` | Greek      | `lv` | Latvian     | `sv` | Swedish    |
+| `en` | English    | `ms` | Malay       | `th` | Thai       |
+| `es` | Spanish    | `ne` | Nepali      | `tr` | Turkish    |
+| `et` | Estonian   | `nl` | Dutch       | `uk` | Ukrainian  |
+| `fi` | Finnish    | `no` | Norwegian   | `ur` | Urdu       |
+| `fr` | French     | `pa` | Punjabi     | `vi` | Vietnamese |
+| `he` | Hebrew     | `pl` | Polish      | `yi` | Yiddish    |
+| `hi` | Hindi      | `pt` | Portuguese  | `zh` | Chinese    |
+| `hr` | Croatian   | `is` | Icelandic   | `zu` | Zulu       |
+| `hu` | Hungarian  | `id` | Indonesian  |      |            |
 
-You could add it in the languages.js file and create a pull request. You could also create a issue about the missing language. If you don't want to do that you can use the _months_ property and supply your own array of 12 string values.
+**Language missing?** Open a PR adding a row to `src/languages.ts`, or pass a custom `months` array:
 
-## Contributing
+```vue
+<MonthPicker :months="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']" />
+```
 
-1. Fork it!
-2. Create your feature branch: git checkout -b my-new-feature
-3. Commit your changes: git commit -am 'Add some feature'
-4. Push to the branch: git push origin my-new-feature
-5. Submit a pull request
+---
 
 ## Development
 
-[Poi](https://poi.js.org/) was used to develop this component.
-
 ```bash
-poi
+# Install dependencies
+npm install
+
+# Start dev server (App.vue playground)
+npm run dev
+
+# Type-check + build library
+npm run build
+
+# Run tests
+npm test
+
+# Watch mode
+npm run test:watch
 ```
+
+---
+
+## Contributing
+
+1. Fork the repo
+2. Create a feature branch: `git checkout -b my-feature`
+3. Commit your changes: `git commit -m 'Add my feature'`
+4. Push: `git push origin my-feature`
+5. Open a pull request
+
+---
 
 ## License
 
-[The MIT License (MIT)](https://opensource.org/licenses/MIT)
+[MIT](https://opensource.org/licenses/MIT)

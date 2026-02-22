@@ -1,39 +1,49 @@
 {
   "name": "vue-month-picker",
-  "version": "1.7.1",
-  "main": "src/index.js",
-  "description": "A simple and elegant month picker for Vue",
-  "scripts": {
-    "build": "poi --prod",
-    "dev": "poi --serve"
+  "version": "2.0.0",
+  "description": "A lightweight month picker for Vue 3 with no dependencies.",
+  "type": "module",
+  "main": "./dist/vue-month-picker.umd.js",
+  "module": "./dist/vue-month-picker.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-month-picker.es.js",
+      "require": "./dist/vue-month-picker.umd.js"
+    }
   },
-  "homepage": "https://github.com/kleinrein/vue-month-picker",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^28.1.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18",
+    "vue": "^3.5.28",
+    "vue-tsc": "^3.2.4"
+  },
   "keywords": [
     "vue",
-    "month",
-    "year",
-    "picker"
+    "vue3",
+    "month-picker",
+    "date-picker",
+    "component"
   ],
-  "author": {
-    "name": "Andreas Rein",
-    "email": "rein@live.no",
-    "url": "https://www.andreasrein.net/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kleinrein/vue-month-picker.git"
-  },
   "license": "MIT",
-  "devDependencies": {
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "eslint": "^7.7.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^7.0.0-beta.2",
-    "poi": "^12.10.3",
-    "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10",
-    "@poi/plugin-eslint": "^12.1.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0"
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "overrides": {
+    "minimatch": ">=10.2.1"
   }
 }

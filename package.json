@@ -17,6 +17,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "build:docs": "vite build --config vite.docs.config.ts",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest"

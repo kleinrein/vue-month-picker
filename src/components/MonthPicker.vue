@@ -18,11 +18,9 @@ const props = withDefaults(
     clearable?: boolean
     minDate?: Date | null
     maxDate?: Date | null
-    inputPreFilled?: boolean
     range?: boolean
     defaultMonthRange?: [number, number] | null
     variant?: 'default' | 'dark'
-    dateFormat?: string
     highlightExactDate?: boolean
   }>(),
   {
@@ -37,11 +35,9 @@ const props = withDefaults(
     clearable: false,
     minDate: null,
     maxDate: null,
-    inputPreFilled: false,
     range: false,
     defaultMonthRange: null,
     variant: 'default',
-    dateFormat: '%n, %Y',
     highlightExactDate: false,
   }
 )
